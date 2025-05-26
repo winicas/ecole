@@ -1,0 +1,56 @@
+/* Styles pour le formulaire de création de type de frais */
+.form-achat {
+    background-color: #f9f9f9;
+    /* Couleur de fond légèrement grise */
+    border-radius: 8px;
+    /* Coins arrondis pour le formulaire */
+    padding: 20px;
+    /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre portée douce */
+}
+
+.form-achat .form-label {
+    font-weight: bold;
+    /* Texte en gras pour les labels */
+}
+
+.form-achat .form-control {
+    border-radius: 4px;
+    /* Coins arrondis pour les champs de formulaire */
+    border: 1px solid #ccc;
+    /* Bordure légère */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Ombre interne légère */
+}
+
+.form-achat .btn-primary {
+    background-color: #28a745;
+    /* Couleur de fond verte pour le bouton primaire */
+    border: none;
+    /* Supprimer la bordure par défaut */
+    border-radius: 4px;
+    /* Coins arrondis pour le bouton */
+    padding: 10px 20px;
+    /* Espacement interne du bouton */
+    font-size: 16px;
+    /* Taille de la police du bouton */
+}
+
+.form-achat .btn-secondary {
+    background-color: #6c757d;
+    /* Couleur de fond grise pour le bouton secondaire */
+    border: none;
+    /* Supprimer la bordure par défaut */
+    border-radius: 4px;
+    /* Coins arrondis pour le bouton */
+    padding: 10px 20px;
+    /* Espacement interne du bouton */
+    font-size: 16px;
+    /* Taille de la police du bouton */
+}
+
+.highlighted-heading {
+    color: #28a745;
+    /* Couleur verte pour le titre */
+}

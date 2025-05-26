@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter un Paiement{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_styles.css' %}">
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between mb-3">
+        <button type="button" class="btn btn-danger" onclick="location.href=#">Supprimer Paiement</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'liste_paiements' %}'">Lister Paiements</button>
+        <button type="button" class="btn btn-success" onclick="window.print();">Imprimer</button>
+    </div>
+    <div class="card shadow-lg rounded-lg border-0">
+        <div class="card-header text-center bg-primary text-white rounded-top">
+            <h2 class="highlighted-heading mb-0">Ajouter un Paiement</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

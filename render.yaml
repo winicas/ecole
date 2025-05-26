@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: groupes-petit-princes.onrender.com
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python manage.py shell -c "from django.db import connection; with connection.cursor() as cursor: cursor.execute('DROP TABLE IF EXISTS paiement_frais_typefraisscolaire;')" || exit 1
+      python manage.py makemigrations
+      python manage.py migrate
+      gunicorn Gf_scool.wsgi:application

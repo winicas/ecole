@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}GI Scool{% endblock title %}</title>
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-6.5.1/css/all.min.css' %}">
+
+    <!-- Bootstrap5 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap-5.3.2/css/bootstrap.min.css' %}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {% block header %}{% endblock %}
+    
+    <style>
+        .highlighted-heading {
+            color: #ff5722;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn {
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success:hover {
+            background-color: #004d40;
+        }
+
+        #side-nav {
+            width: 250px;
+            background-color: #f8f9fa;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .main-menu {
+            padding: 20px;
+        }
+        .top-side {
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+        }
+        .top-side img {
+            max-width: 100%;
+            height: auto;
+        }
+        .text-orange mark {
+            background-color: transparent;
+            color: #ff5722;
+        }
+        .main-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .main-menu li {
+            margin: 10px 0;
+        }
+        .main-menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .main-menu a:hover {
+            background-color: #e9ecef;
+        }
+        .main-menu i {
+            margin-right: 10px;
+        }
+        .active a {
+            background-color: #007bff;
+            color: white;
+        }
+        .card-footer {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .card-footer a {
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            #side-nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                box-shadow: none;
+            }
+            .highlighted-heading {
+                font-size: 1.25rem;
+            }
+            .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 576px) {
+            .btn {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% block sidebar %}
+        {% include 'aside.html' %}
+    {% endblock %}
+
+    <div id="main">
+        {% block topbar %}
+            {% include 'navbar.html' %}
+        {% endblock %}
+
+        <div class="container-fluid" id="main-content">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+<p class="small m-0">
+Read our <a href="#">Privacy</a> and <a href="#">Terms of use.</a>
+<br />Gf_scool &copy; <script>document.write(new Date().getFullYear());</script>
+<br />
+⭐️ En cas de Problème, contactez 0820387269 de 08h30 à 16h30
+</p>
+</footer>
+</div>
+    <script type="text/javascript" src="{% static 'vendor/jquery-3.7.1/jquery-3.7.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/bootstrap-5.3.2/js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+    {% block js %}{% endblock js %}
+</body>
+
+</html>

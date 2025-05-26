@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrer un Élève</title>
+    <!-- Inclure le CSS de Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6; /* Fond clair et apaisant */
+            font-family: 'Arial', sans-serif; /* Police moderne */
+        }
+
+        .card {
+            border-radius: 10px; /* Bordures arrondies des cartes */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #007bff; /* Couleur de fond de l'en-tête */
+            color: white; /* Couleur du texte de l'en-tête */
+            padding: 15px;
+            border-bottom: 1px solid #0056b3; /* Bordure sous l'en-tête */
+        }
+
+        .card-body {
+            padding: 20px;
+            background-color: white; /* Couleur de fond du corps de la carte */
+        }
+
+        .form-title {
+            font-size: 1.25rem; /* Taille de police pour le titre du formulaire */
+            color: #333; /* Couleur du texte du titre */
+            border-bottom: 2px solid #007bff; /* Bordure sous le titre */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 5px; /* Bordures arrondies des boutons */
+            transition: background-color 0.3s, transform 0.3s; /* Transition fluide */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px); /* Légère élévation au survol */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            border-radius: 5px; /* Bordures arrondies des boutons */
+            transition: background-color 0.3s, transform 0.3s; /* Transition fluide */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px); /* Légère élévation au survol */
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Espacement entre les champs de formulaire */
+        }
+
+        .alert-danger {
+            border-radius: 5px; /* Bordures arrondies des alertes */
+            margin-top: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px; /* Bordures arrondies des champs de formulaire */
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Ombre intérieure douce */
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Ombre bleue au focus */
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-3 fw-bold">Enregistrer un Nouvel Élève</h2>
+        </div>
+        <div class="card-body">
+            <!-- Formulaire d'enregistrement -->
+            <form method="post" action="{% url 'enregistrer_eleve' %}">
+                {% csrf_token %}
+
+                <!-- Affichage des erreurs de formulaire -->
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="id_nom_elev">Nom :</label>
+                    <input type="text" id="id_nom_elev" name="nom_elev" class="form-control" placeholder="Nom de l'élève" value="{{ form.nom_elev.value }}" oninput="toUpperCase(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_postnom_elev">Postnom :</label>
+                    <input type="text" id="id_postnom_elev" name="postnom_elev" class="form-control" placeholder="Postnom de l'élève" value="{{ form.postnom_elev.value }}" oninput="toUpperCase(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_prenom_elev">Prénom :</label>
+                    <input type="text" id="id_prenom_elev" name="prenom_elev" class="form-control" placeholder="Prénom de l'élève" value="{{ form.prenom_elev.value }}" oninput="capitalizeFirstLetter(this)">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_date_naissance_elev">Date de Naissance :</label>
+                    <input type="text" id="id_date_naissance_elev" name="date_naissance_elev" class="form-control" placeholder="Date de naissance de l'élève" value="{{ form.date_naissance_elev.value }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_option_elev">Option :</label>
+                    <select id="id_option_elev" name="option_elev" class="form-control">
+                        <option value="" selected disabled>Choisissez une option</option>
+                        {% for value, label in form.option_elev.field.choices %}
+                            <option value="{{ value }}" {% if value == form.option_elev.value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_classe_elev">Classe :</label>
+                    <select id="id_classe_elev" name="classe_elev" class="form-control">
+                        <option value="" selected disabled>Choisissez une classe</option>
+                        {% for value, label in form.classe_elev.field.choices %}
+                            <option value="{{ value }}" {% if value == form.classe_elev.value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_numero_parent1">Numéro du Parent 1 :</label>
+                    <input type="text" id="id_numero_parent1" name="numero_parent1" class="form-control" placeholder="Numéro de téléphone du Parent 1" value="{{ form.numero_parent1.value }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_numero_parent2">Numéro du Parent 2 :</label>
+                    <input type="text" id="id_numero_parent2" name="numero_parent2" class="form-control" placeholder="Numéro de téléphone du Parent 2" value="{{ form.numero_parent2.value }}">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <a href="{% url 'create_or_update_paiement' %}" class="btn btn-secondary">Faites le paiement ici</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#id_date_naissance_elev", {
+        dateFormat: "d/m/Y",
+        locale: "fr" // Utiliser le format de date en français
+    });
+
+    // Fonction pour convertir le texte en majuscules
+    function toUpperCase(input) {
+        input.value = input.value.toUpperCase();
+    }
+
+    // Fonction pour capitaliser la première lettre du texte
+    function capitalizeFirstLetter(input) {
+        const words = input.value.split(' ');
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+        }
+        input.value = words.join(' ');
+    }
+
+    // Affichage d'une alerte après soumission réussie
+    {% if form.instance.pk %}
+    alert("L'élève a été enregistré avec le matricule : {{ form.instance.matricule_elev }}");
+    {% endif %}
+</script>
+</body>
+</html>
+{% endblock %}

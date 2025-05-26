@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Paiements Autres Frais{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Liste des Paiements Autres Frais</h1>
+    <div class="mb-3">
+        <a href="{% url 'create_type_frais' %}" class="btn btn-primary">Ajouter Type de Frais</a>
+        <a href="{% url 'create_paiement_autres_frais' %}" class="btn btn-success">Ajouter Paiement Autres Frais</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Élève</th>
+                        <th>Type de Frais</th>
+                        <th>Montant Payé</th>
+                        <th>Date de Paiement</th>
+                        <th>Montant Restant</th>
+                        <th>Total Montant Payé</th> <!-- New column -->
+                        <th>Montant Total à Payer</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for paiement in paiements_autres_frais %}
+                    <tr>
+                        <td>{{ paiement.id }}</td>
+                        <td>{{ paiement.eleve.nom_elev }} {{ paiement.eleve.postnom_elev }} {{ paiement.eleve.prenom_elev }}</td>
+                        <td>{{ paiement.type_de_frais.nom }}</td>
+                        <td>{{ paiement.montant_payer_af }}</td>
+                        <td>{{ paiement.date_payement }}</td>
+                        <td>{{ paiement.montant_restant_af }}</td>
+                        <td>{{ paiement.total_montant_payer_af }}</td> <!-- New field displayed -->
+                        <td>{{ paiement.type_de_frais.montant_total_a_payer }}</td>
+                        
+                        <td>
+                            <a href="{% url 'modifier_paiement_autres_frais' paiement.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="{% url 'recu_paiement_autres_frais' paiement.id %}" class="btn btn-secondary btn-sm">Imprimer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

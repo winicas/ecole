@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reçu de Paiement</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f9fa; 
+            color: #333; 
+        }
+        .container { 
+            width: 80%; 
+            margin: auto; 
+            background-color: #fff; 
+            padding: 20px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
+        }
+        .header img { 
+            width: 80px; 
+            height: 80px; 
+        }
+        .header .details { 
+            text-align: center; 
+            flex-grow: 1; 
+        }
+        .header .details h1 { 
+            margin: 0; 
+            font-size: 1.5em; 
+        }
+        .header .details p { 
+            margin: 5px 0; 
+            font-size: 0.9em; 
+        }
+        .content { 
+            margin: 20px 0; 
+        }
+        .content h2 { 
+            border-bottom: 2px solid #007bff; 
+            padding-bottom: 5px; 
+            font-size: 1.2em; 
+        }
+        .content p { 
+            margin: 10px 0; 
+            font-size: 1em; 
+        }
+        .qr-code { 
+            text-align: center; 
+            margin-top: 20px; 
+        }
+        .qr-code img { 
+            width: 80px; 
+            height: 80px; 
+        }
+        .signature { 
+            margin-top: 30px; 
+            text-align: center; 
+        }
+        .signature p { 
+            margin-bottom: 10px; 
+        }
+        .footer { 
+            text-align: center; 
+            margin-top: 20px; 
+            border-top: 1px solid #ddd; 
+            padding-top: 10px; 
+            font-size: 0.9em; 
+            color: #666; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ logo_url }}" alt="Logo de l'école">
+            <div class="details">
+                <h1>{{ ecole.nom }}</h1>
+                <p>{{ ecole.adresse }}</p>
+                <p>Téléphone: {{ ecole.telephone }}</p>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Reçu de Paiement</h2>
+            <p><strong>Agent :</strong> {{ paiement.agent.nom_agent }} {{ paiement.agent.postnom_agent }} {{ paiement.agent.prenom_agent }}</p>
+            <p><strong>Montant Payé :</strong> {{ paiement.montant_paye }} EUR</p>
+            <p><strong>Date du Paiement :</strong> {{ paiement.date_paiement|date:"d F Y" }}</p>
+            <p><strong>Période :</strong> {{ paiement.periode }}</p>
+            <p><strong>Motif :</strong> {{ paiement.motif_paiement }}</p>
+            <div class="qr-code">
+                <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code">
+            </div>
+        </div>
+        <div class="signature">
+            <p>Signature de l'Agent :</p>
+            <hr style="width: 200px;">
+        </div>
+        <div class="footer">
+            <p>Généré par {{ comptable.first_name }} {{ comptable.last_name }} le {{ paiement.date_paiement|date:"d F Y" }}</p>
+        </div>
+    </div>
+</body>
+</html>

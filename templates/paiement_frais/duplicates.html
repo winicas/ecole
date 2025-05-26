@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doublons Frais Scolaires</title>
+</head>
+<body>
+    <h1>Enregistrements en double</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Classe</th>
+                <th>Ecole</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for duplicate in duplicates %}
+                <tr>
+                    <td>{{ duplicate.option }}</td>
+                    <td>{{ duplicate.classe }}</td>
+                    <td>{{ duplicate.ecole }}</td>
+                    <td>{{ duplicate.count }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Aucun doublon trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

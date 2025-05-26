@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil - GI Scool{% endblock %}
+
+{% block sidebar %}
+    {% include 'aside.html' %}
+{% endblock %}
+
+{% block maincontent %}
+<div id="main">
+    {% block topbar %}
+        {% include 'navbar.html' %}
+    {% endblock %}
+
+    <div class="container-fluid" id="main-content">
+        {% block content %}
+        <!-- Contenu spécifique à la page -->
+        <h1 class="highlighted-heading">Bienvenue dans le système de gestion de GI Scool</h1>
+        <p>Voici un aperçu de votre tableau de bord.</p>
+        <p>École : {{ ecole.nom }}</p>
+        <p>Utilisateur : {{ user.username }}</p>
+        <!-- Autres éléments de contenu -->
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load custom_filters %}
+{{ types_de_frais|get_by_id:1 }}
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Élèves par Classe et Option</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Liste des Élèves par Classe et Option</h1>
+    <p><strong>Type de Frais :</strong> {{ types_de_frais|get_by_id:type_frais_id }}</p>
+    <p><strong>Classe :</strong> {{ classe }}</p>
+    <p><strong>Option :</strong> {{ option }}</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Matricule</th>
+                <th>Nom complet</th>
+                <th>Classe</th>
+                <th>Option</th>
+                <th>Montant Payé</th>
+                <th>Type de Frais</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.eleve.matricule_elev }}</td>
+                <td>{{ paiement.eleve.nom_elev }} {{ paiement.eleve.postnom_elev }} {{ paiement.eleve.prenom_elev }}</td>
+                <td>{{ paiement.eleve.classe_elev }}</td>
+                <td>{{ paiement.eleve.option_elev }}</td>
+                <td>{{ paiement.montant_payer_af }}</td>
+                <td>{{ paiement.type_de_frais.nom }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

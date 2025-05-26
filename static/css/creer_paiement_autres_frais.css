@@ -1,0 +1,30 @@
+body {
+    background-color: #f4f7f6;
+}
+
+.container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.highlighted-heading {
+    color: #007bff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.9;
+}
+

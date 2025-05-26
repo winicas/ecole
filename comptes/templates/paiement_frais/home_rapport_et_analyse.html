@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Rapport et Analyse Financière
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Rapport et Analyse Financière</h1>
+    <div class="list-group">
+        <a href="{% url 'financial_report' 'mensuel' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="fas fa-calendar-alt fa-2x me-3 text-primary"></i>
+            <span class="fs-5">Rapport Mensuel</span>
+        </a>
+        <a href="{% url 'financial_report' 'trimestriel' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="fas fa-calendar fa-2x me-3 text-success"></i>
+            <span class="fs-5">Rapport Trimestriel</span>
+        </a>
+        <a href="{% url 'financial_report' 'annuel' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="fas fa-calendar-check fa-2x me-3 text-warning"></i>
+            <span class="fs-5">Rapport Annuel</span>
+        </a>
+        <a href="{% url 'analyze_financial_trends' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="fas fa-chart-line fa-2x me-3 text-info"></i>
+            <span class="fs-5">Analyse des Tendances</span>
+        </a>
+        <a href="{% url 'historique_complet' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+            <i class="fas fa-history fa-2x me-3 text-secondary"></i>
+            <span class="fs-5">Historique Complet de Toutes Transactions</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

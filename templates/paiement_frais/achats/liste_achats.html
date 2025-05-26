@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Achats{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Liste des Achats</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fourniture</th>
+                    <th>Quantité</th>
+                    <th>Date d'Achat</th>
+                    <th>Montant Total</th>
+                    <th>Fournisseur</th>
+                    <th>Numéro de Facture</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achat in achats %}
+                <tr>
+                    <td>{{ achat.fourniture }}</td>
+                    <td>{{ achat.quantite }}</td>
+                    <td>{{ achat.date_achat }}</td>
+                    <td>{{ achat.montant_achat }}</td>
+                    <td>{{ achat.fournisseur.nom }}</td>
+                    <td>{{ achat.numero_facture }}</td>
+                    <td>
+                        <a href="{% url 'detail_achat' achat.pk %}" class="btn btn-info btn-sm">Détails</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'creer_achat' %}" class="btn btn-primary mt-3">Créer un nouvel achat</a>
+</div>
+{% endblock %}

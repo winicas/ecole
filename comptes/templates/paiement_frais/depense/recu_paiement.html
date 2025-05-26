@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reçu de Paiement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .receipt {
+            padding: 30px;
+            width: 90%;
+            max-width: 700px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+        .company-info {
+            text-align: center;
+            flex: 1;
+        }
+        .company-info h1 {
+            margin: 0;
+            font-size: 20px; /* Réduit la taille de la police */
+            color: #333;
+        }
+        .company-info p {
+            margin: 5px 0;
+            font-size: 12px; /* Réduit la taille de la police */
+            color: #555;
+        }
+        h2 {
+            color: #007bff;
+            font-size: 18px; /* Réduit la taille de la police */
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .details-table th, .details-table td {
+            padding: 8px; /* Réduit le padding */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px; /* Réduit la taille de la police */
+        }
+        .details-table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .details-table .label {
+            font-weight: bold;
+            width: 35%;
+        }
+        .details-table .value {
+            width: 65%;
+        }
+        .qr-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code {
+            width: 80px; /* Réduit la taille du QR code */
+            height: 80px; /* Réduit la taille du QR code */
+            object-fit: contain;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px; /* Réduit la taille de la police */
+            color: #777;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        {% load static %}
+        <div class="header">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            <div class="company-info">
+                <h1>COMPLEXE SCOLAIRE NOTRE DAME DE LA COMPASSION</h1>
+                <p>Rue Mushi n°37 bis, Q/Mpasa-maba, commune de la N'sele</p>
+                <p>Téléphone : +243 891 306 045</p>
+            </div>
+        </div>
+        <h2>
+            Reçu de Paiement
+            <span class="receipt-info"> n°: {{ paiement.id }}</span>
+        </h2>
+        <table class="details-table">
+            <tr>
+                <td class="label">Agent :</td>
+                <td class="value">{{ paiement.agent.nom_agent }} {{ paiement.agent.postnom_agent }} {{ paiement.agent.prenom_agent }}</td>
+            </tr>
+            <tr>
+                <td class="label">Motif de Paiement :</td>
+                <td class="value">{{ paiement.motif_paiement }}</td>
+            </tr>
+            <tr>
+                <td class="label">Montant Payé :</td>
+                <td class="value">{{ paiement.montant_paye }}</td>
+            </tr>
+            <tr>
+                <td class="label">Date de Paiement :</td>
+                <td class="value">{{ paiement.date_paiement }}</td>
+            </tr>
+            <tr>
+                <td class="label">Période :</td>
+                <td class="value">{{ paiement.periode }}</td>
+            </tr>
+        </table>
+        <div class="qr-container">
+            <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="qr-code">
+        </div>
+        <div class="signature-section">
+            <p>Signature de l'Agent :</p>
+            <div class="signature-line"></div>
+        </div>
+    </div>
+</body>
+</html>

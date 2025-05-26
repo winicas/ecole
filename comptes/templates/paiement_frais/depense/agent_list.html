@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Agents{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/agent_list.css' %}">
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header">
+            <h2 class="highlighted-heading mb-0">Liste des Agents</h2>
+        </div>
+        <div class="card-body">
+            <a href="{% url 'create_agent' %}" class="btn btn-primary mb-3">
+                <i class="fas fa-plus"></i> Ajouter un Agent
+            </a>
+            <div class="table-responsive"> <!-- Ajouté pour la réactivité -->
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Postnom</th>
+                            <th>Prénom</th>
+                            <th>Sexe</th>
+                            <th>Matricule</th>
+                            <th>Fonction</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for agent in agents %}
+                        <tr>
+                            <td>{{ agent.id }}</td>
+                            <td>{{ agent.nom_agent }}</td>
+                            <td>{{ agent.postnom_agent }}</td>
+                            <td>{{ agent.prenom_agent }}</td>
+                            <td>{{ agent.get_sexe_agent_display }}</td>
+                            <td>{{ agent.matricule_agent }}</td>
+                            <td>{{ agent.fonction_agent }}</td>
+                            <td>
+                                <a href="{% url 'payer_paiement' agent.pk %}" class="btn btn-primary">Payer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/agent_list.js' %}"></script>
+{% endblock %}

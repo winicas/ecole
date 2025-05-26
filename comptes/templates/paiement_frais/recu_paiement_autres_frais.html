@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reçu de Paiement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .school-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .school-info h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .school-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .qr-code {
+            float: right;
+            width: 100px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details h2 {
+            font-size: 20px;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        .details p {
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ logo_url }}" alt="Logo" class="logo">
+        </div>
+        <div class="school-info">
+            <h1>{{ school_name }}</h1>
+            <p>{{ school_address }}</p>
+        </div>
+        <div class="details">
+            <h2>Reçu de Paiement</h2>
+            <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="qr-code">
+            <p><strong>Élève:</strong> {{ paiement.eleve.nom_elev }} {{ paiement.eleve.postnom_elev }} {{ paiement.eleve.prenom_elev }}</p>
+            <p><strong>Type de Frais:</strong> {{ paiement.type_de_frais.nom }}</p>
+            <p><strong>Montant Payé:</strong> {{ paiement.montant_payer_af }}</p>
+            <p><strong>Date de Paiement:</strong> {{ paiement.date_payement }}</p>
+            <p><strong>Montant Restant:</strong> {{ paiement.montant_restant_af }}</p>
+            <p><strong>Montant Total à Payer:</strong> {{ paiement.montant_total_a_payer_af }}</p>
+        </div>
+        <div class="footer">
+            <p>Merci pour votre paiement.</p>
+        </div>
+    </div>
+</body>
+</html>

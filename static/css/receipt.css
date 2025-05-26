@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.receipt {
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+.company-info {
+    text-align: center;
+    flex: 1;
+}
+
+.company-info h1 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.company-info p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #555;
+}
+
+h2 {
+    color: #007bff;
+    font-size: 18px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.details-table th,
+.details-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.details-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.details-table .label {
+    font-weight: bold;
+    width: 35%;
+}
+
+.details-table .value {
+    width: 65%;
+}
+
+.qr-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qr-code {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.signature {
+    margin-top: 30px;
+    text-align: right;
+    font-size: 12px;
+}
+
+.signature-line {
+    border-top: 1px solid #000;
+    width: 200px;
+    margin-top: 5px;
+    margin-right: 30px;
+    display: inline-block;
+}
+
+/* Styles pour l'impression */
+@media print {
+    body {
+        background-color: #fff;
+    }
+
+    .receipt {
+        box-shadow: none;
+        width: 100%;
+        padding: 20px;
+        border: none;
+    }
+
+    .header,
+    .footer {
+        border: none;
+        padding: 0;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .details-table th,
+    .details-table td {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    .qr-code {
+        width: 60px;
+        height: 60px;
+    }
+
+    .signature {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    button {
+        display: none;
+    }
+}

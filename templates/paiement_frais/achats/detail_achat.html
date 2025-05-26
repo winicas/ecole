@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Détails de l'Achat{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Détails de l'Achat</h1>
+    <div class="school-info mb-4">
+        <h4>École: {{ request.user.ecole.nom }}</h4>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Fourniture:</strong> {{ achat.fourniture }}</p>
+            <p><strong>Quantité:</strong> {{ achat.quantite }}</p>
+            <p><strong>Date d'Achat:</strong> {{ achat.date_achat }}</p>
+            <p><strong>Montant Total:</strong> {{ achat.montant_achat }}</p>
+            <p><strong>Fournisseur:</strong> {{ achat.fournisseur.nom }}</p>
+            <p><strong>Numéro de Facture:</strong> {{ achat.numero_facture }}</p>
+            <p><strong>Commentaire:</strong> {{ achat.commentaire }}</p>
+            <a href="{% url 'liste_achats' %}" class="btn btn-secondary mt-3">Retour à la liste des achats</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- En-tête de Section -->
+    <h2 class="text-center mb-4">Liste des Archives</h2>
+
+    <!-- Formulaire de Recherche -->
+    <form method="get" action="{% url 'liste_archives' %}" class="mb-4 p-3 border rounded bg-light shadow-sm">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_type_mouvement" class="form-label">Type de Mouvement</label>
+                    <select id="id_type_mouvement" name="type_mouvement" class="form-select">
+                        <option value="">Choisir...</option>
+                        <option value="Paiement" {% if form.type_mouvement.value == "Paiement" %}selected{% endif %}>Paiement</option>
+                        <option value="Paiement Salaire Agent" {% if form.type_mouvement.value == "Paiement Salaire Agent" %}selected{% endif %}>Paiement Salaire Agent</option>
+                        <option value="Paiement Autres Frais" {% if form.type_mouvement.value == "Paiement Autres Frais" %}selected{% endif %}>Paiement Autres Frais</option>
+                        <option value="Achat Fourniture" {% if form.type_mouvement.value == "Achat Fourniture" %}selected{% endif %}>Achat Fourniture</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_date_debut" class="form-label">Date de Début</label>
+                    <input type="date" id="id_date_debut" name="date_debut" class="form-control" value="{{ form.date_debut.value }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <label for="id_date_fin" class="form-label">Date de Fin</label>
+                    <input type="date" id="id_date_fin" name="date_fin" class="form-control" value="{{ form.date_fin.value }}">
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tableau des Archives -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-secondary">
+                <tr>
+                    <th>ID</th>
+                    <th>Type de Mouvement</th>
+                    <th>Montant</th>
+                    <th>Date et Heure</th>
+                    <th>Description</th>
+                    <th>Référence</th>
+                    <th>Données Archivées</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for archive in archives %}
+                <tr>
+                    <td>{{ archive.mouvement_id }}</td>
+                    <td>{{ archive.type_mouvement }}</td>
+                    <td>{{ archive.montant }}</td>
+                    <td>{{ archive.date }}</td>
+                    <td>{{ archive.description }}</td>
+                    <td>{{ archive.reference }}</td>
+                    <td>
+                        <pre class="text-break">{{ archive.archived_data|json_script:"data" }}</pre>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucune archive trouvée.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

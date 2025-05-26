@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Reçu de Paiement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .container {
+            width: 190mm; /* Largeur proche de A4 pour un demi-reçu */
+            height: 142mm; /* Hauteur de A4 divisée en deux pour deux reçus */
+            padding: 15px;
+            margin: 10px auto;
+            border: 2px solid #000;
+            background-color: #fff;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        .header-left {
+            max-width: 70%;
+        }
+        .header-left h1 {
+            font-size: 14px;
+            margin: 0;
+            color: #333;
+            line-height: 1.2;
+            word-break: break-word;
+            white-space: normal;
+        }
+        .header-left p {
+            font-size: 10px;
+            margin: 2px 0;
+            color: #555;
+        }
+        .header-right img {
+            max-width: 60px;
+            max-height: 60px;
+        }
+        .title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+        .separator {
+            border-bottom: 1px solid #333;
+            margin: 15px 0;
+        }
+        .details {
+            font-size: 15px;
+            margin: 8px 0;
+        }
+        .details p {
+            margin: 4px 0;
+        }
+        .details strong {
+            color: #333;
+        }
+        .date {
+            margin-top: 10px;
+            font-size: 15px;
+            text-align: left;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .qr-code img {
+            max-width: 80px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>{{ ecole.nom|linebreaksbr }}</h1> <!-- Nom divisé en lignes si nécessaire -->
+                <p>{{ ecole.adresse }}</p>
+                <p>Tél : {{ ecole.telephone }}</p>
+            </div>
+            <div class="header-right">
+                <img src="{{ logo_url }}" alt="Logo de l'école">
+            </div>
+        </div>
+
+        <!-- Title with receipt number -->
+        <div class="title">Reçu de paiement n° {{ paiement.numero_recu }}</div>
+        
+        <!-- Separator line -->
+        <div class="separator"></div>
+
+        <!-- Student and payment details -->
+        <div class="details">
+            <p><strong>Nom de l'élève :</strong> {{ paiement.eleve.nom_elev }} {{ paiement.eleve.postnom_elev }}</p>
+            <p><strong>Matricule de l'élève :</strong> {{ paiement.eleve.matricule_elev }}</p>
+            <p><strong>Type de frais :</strong> {{ paiement.type_de_frais.nom }}</p>
+            <p><strong>Montant payé :</strong> {{ paiement.montant_payer_af }} Fc</p>
+            <p><strong>Montant total payé :</strong> {{ paiement.total_montant_payer_af }} Fc</p>
+            <p><strong>Montant restant :</strong> {{ paiement.montant_restant_af }} Fc</p>
+        </div>
+
+        <!-- Payment date -->
+        <div class="date"><strong>Date de paiement :</strong> {{ paiement.date_paiement|date:"d/m/Y" }}</div>
+
+        <!-- QR code -->
+        <div class="qr-code">
+            <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code">
+        </div>
+
+        <!-- Footer message -->
+        <div class="footer">
+            <p>Merci pour votre paiement.</p>
+        </div>
+    </div>
+</body>
+</html>

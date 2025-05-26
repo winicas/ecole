@@ -1,0 +1,36 @@
+<!-- paiement_frais/paiement_autres_frais_form.html -->
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Créer un Paiement pour Autres Frais</h2>
+  <form method="get" class="mb-4">
+    <div class="input-group">
+      {{ search_form.query|as_crispy_field }}
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Rechercher</button>
+      </div>
+    </div>
+  </form>
+
+  {% if eleve_recherche %}
+    <div class="alert alert-info">
+      <strong>Élève trouvé :</strong> {{ eleve_recherche.nom_elev }} {{ eleve_recherche.postnom_elev }} (Matricule: {{ eleve_recherche.matricule_elev }})
+    </div>
+  {% else %}
+    <p class="text-danger">Aucun élève trouvé.</p>
+  {% endif %}
+  
+  <form method="post">
+    {% csrf_token %}
+    <div class="card">
+      <div class="card-body">
+        {{ form|crispy }}
+      </div>
+    </div>
+    <div class="mt-3">
+      <button type="submit" class="btn btn-success">Enregistrer le Paiement</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

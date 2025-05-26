@@ -1,0 +1,17 @@
+env/groupe-petit-prince/
+# Node.js
+node_modules/
+.next/
+out/
+
+# Python
+*.pyc
+__pycache__/
+*.sqlite3
+db.sqlite3
+env/
+venv/
+.env
+
+# macOS
+.DS_Store

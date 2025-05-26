@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Journalier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 18px;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        /* Ajuster la table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto; /* Laisse la table ajuster les colonnes automatiquement */
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        /* Bordures des cellules */
+        table, th, td {
+            border: 1px solid #bdc3c7;
+        }
+        /* Style pour les cellules */
+        th, td {
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+            white-space: nowrap; /* Empêche les retours à la ligne */
+            overflow: hidden; /* Masque le contenu débordant */
+            text-overflow: ellipsis; /* Ajoute "..." si le contenu déborde */
+        }
+        /* Couleur de l'en-tête */
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        /* Alternance de couleur pour les lignes */
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+        /* Colonne spécifique pour le Montant */
+        th:nth-child(8), td:nth-child(8) {
+            width: 100px;
+            text-align: right;
+            white-space: nowrap;
+        }
+        /* Section des totaux */
+        .totals {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+        .totals span {
+            color: #e74c3c;
+        }
+        /* Pied de page */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        /* Orientation paysage pour l'impression */
+        @media print {
+            @page {
+                size: landscape; /* Paysage */
+            }
+            /* Style pour l'impression */
+            body {
+                font-size: 12px;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+            table {
+                table-layout: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rapport Journalier</h1>
+        <h2>École: {{ ecole }} - Date: {{ date }}</h2>
+
+        <!-- Section des Paiements des Frais Scolaires -->
+        <h3>Paiements des Frais Scolaires</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Postnom</th>
+                    <th>Prénom</th>
+                    <th>Matricule</th>
+                    <th>Classe</th>
+                    <th>Option</th>
+                    <th>Motif de Paiement</th>
+                    <th>Montant (CDF)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paiement in paiements_frais_scolaires %}
+                <tr>
+                    <td>{{ paiement.eleve.nom_elev }}</td>
+                    <td>{{ paiement.eleve.postnom_elev }}</td>
+                    <td>{{ paiement.eleve.prenom_elev }}</td>
+                    <td>{{ paiement.eleve.matricule_elev }}</td>
+                    <td>{{ paiement.eleve.classe_elev }}</td>
+                    <td>{{ paiement.eleve.option_elev }}</td>
+                    <td>Frais Scolaire</td>
+                    <td>{{ paiement.montant_payer }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <h3>Total des Paiements des Frais Scolaires: <span>{{ total_paiements_frais_scolaires }} CDF</span></h3>
+        </div>
+
+        <!-- Section des Paiements des Autres Frais -->
+        <h3>Paiements des Autres Frais</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Postnom</th>
+                    <th>Prénom</th>
+                    <th>Matricule</th>
+                    <th>Classe</th>
+                    <th>Option</th>
+                    <th>Montant (CDF)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paiement_autres in paiements_autres_frais %}
+                <tr>
+                    <td>{{ paiement_autres.eleve.nom_elev }}</td>
+                    <td>{{ paiement_autres.eleve.postnom_elev }}</td>
+                    <td>{{ paiement_autres.eleve.prenom_elev }}</td>
+                    <td>{{ paiement_autres.eleve.matricule_elev }}</td>
+                    <td>{{ paiement_autres.eleve.classe_elev }}</td>
+                    <td>{{ paiement_autres.eleve.option_elev }}</td>
+                    <td>{{ paiement_autres.montant_payer_af }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <h3>Total des Autres Frais: <span>{{ total_paiements_autres_frais }} CDF</span></h3>
+        </div>
+
+        <!-- Section des Dépenses -->
+        <h3>Dépenses</h3>
+        
+        <!-- Sous-section des Salaires -->
+        <h3>Salaires</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Post-nom</th>
+                    <th>Prénom</th>
+                    <th>Fonction</th>
+                    <th>Montant (CDF)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salaire in paiements_salaires %}
+                <tr>
+                    <td>{{ salaire.agent.nom_agent }}</td>
+                    <td>{{ salaire.agent.postnom_agent }}</td>
+                    <td>{{ salaire.agent.prenom_agent }}</td>
+                    <td>{{ salaire.agent.fonction_agent }}</td>
+                    <td>{{ salaire.montant_paye }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Aucun salaire enregistré pour aujourd'hui.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <h3>Total des Salaires: <span>{{ total_paiements_salaires }} CDF</span></h3>
+        </div>
+
+        <!-- Sous-section des Achats Fournitures -->
+        <h3>Achats Fournitures</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Quantité</th>
+                    <th>Montant (CDF)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achat in achats_fournitures %}
+                <tr>
+                    <td>{{ achat.fourniture }}</td>
+                    <td>{{ achat.quantite }}</td>
+                    <td>{{ achat.montant_achat }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <h3>Total des Achats de Fournitures: <span>{{ total_achats_fournitures }} CDF</span></h3>
+        </div>
+
+        <!-- Section pour le Solde -->
+        <div class="totals">
+            <h3>Solde: <span> {{ solde }} CDF</span></h3>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© {{ current_year }} Gestion Financière Scolaire. Tous droits réservés.</p>
+        </div>
+    </div>
+
+</body>
+</html>

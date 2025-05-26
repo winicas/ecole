@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Payer {{ agent.nom_agent }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Payer {{ agent.nom_agent }} {{ agent.postnom_agent }} {{ agent.prenom_agent }}</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Confirmer le Paiement</button>
+    </form>
+</div>
+{% endblock %}

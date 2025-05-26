@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Paiements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* Espacement inférieur pour les tableaux */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .highlighted-heading {
+            color: #ff5722; /* Couleur orange vif */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombre portée pour un effet lumineux */
+            font-family: 'Roboto', sans-serif; /* Police moderne et élégante */
+            font-size: 2rem; /* Taille de police */
+            font-weight: bold; /* Poids de la police pour plus de visibilité */
+            text-align: center; /* Centrer le texte */
+            margin-bottom: 1.5rem; /* Espacement inférieur */
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="highlighted-heading">Liste des Paiements Filtrés</h1>
+
+    <h2>Paiements Frais</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Élève</th>
+                <th>Matricule</th>
+                <th>Option</th>
+                <th>Classe</th>
+                <th>Montant Total Payé</th>
+                <th>Montant Restant</th>
+                <th>Montant Total à payé</th>
+                <th>Motif de Paiement</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.eleve.nom_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.matricule_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.option_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.classe_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_total_payer|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_restant|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_total_a_payer|default:"Non disponible" }}</td>
+                <td>{{ paiement.motif_paiement|default:"Non disponible" }}</td>
+                <td>{{ paiement.date|default:"Non disponible" }}</td>
+                
+                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">Aucun paiement trouvé</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Paiements Autres Frais</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Élève</th>
+                <th>Montant Payé</th>
+                <th>Date</th>
+                <th>Type de Frais</th>
+                <th>Montant Total Payé</th>
+                <th>Montant Restant</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paiement_autre_frais in paiements_autres_frais %}
+            <tr>
+                <td>{{ paiement_autre_frais.eleve.nom_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement_autre_frais.montant_payer_af|default:"Non disponible" }}</td>
+                <td>{{ paiement_autre_frais.date_payement|default:"Non disponible" }}</td>
+                <td>{{ paiement_autre_frais.type_de_frais|default:"Non disponible" }}</td>
+                <td>{{ paiement_autre_frais.total_montant_payer_af|default:"Non disponible" }}</td>
+                <td>{{ paiement_autre_frais.montant_restant_af|default:"Non disponible" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Aucun paiement trouvé</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

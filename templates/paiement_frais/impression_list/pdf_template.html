@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Paiements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 14px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        td {
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .empty-message {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Paiements Filté</h1>
+
+    <h2>Paiements Frais scolaire</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Élève</th>
+                <th>Matricule</th>
+                <th>Option</th>
+                <th>Classe</th>
+                <th>Montant Total Payé</th>
+                <th>Montant Restant</th>
+                <th>Montant Total à payé</th>
+                <th>Motif de Paiement</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.eleve.nom_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.matricule_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.option_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.eleve.classe_elev|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_total_payer|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_restant|default:"Non disponible" }}</td>
+                <td>{{ paiement.montant_total_a_payer|default:"Non disponible" }}</td>
+                <td>{{ paiement.motif_paiement|default:"Non disponible" }}</td>
+                <td>{{ paiement.date|default:"Non disponible" }}</td>
+                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="empty-message">Aucun paiement trouvé</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

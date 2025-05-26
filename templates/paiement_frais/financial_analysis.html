@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Analyse des Tendances Financières
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Analyse des Tendances Financières</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Recettes vs Dépenses Mensuelles</h3>
+            <canvas id="monthlyTrendsChart"></canvas>
+            <p>Recettes: {{ analysis_data.monthly.payments }}</p>
+            <p>Dépenses: {{ analysis_data.monthly.expenses }}</p>
+        </div>
+        <div class="col-md-6">
+            <h3>Recettes vs Dépenses Trimestrielles</h3>
+            <canvas id="quarterlyTrendsChart"></canvas>
+            <p>Recettes: {{ analysis_data.quarterly.payments }}</p>
+            <p>Dépenses: {{ analysis_data.quarterly.expenses }}</p>
+        </div>
+        <div class="col-md-6 mt-4">
+            <h3>Recettes vs Dépenses Annuelles</h3>
+            <canvas id="annualTrendsChart"></canvas>
+            <p>Recettes: {{ analysis_data.annual.payments }}</p>
+            <p>Dépenses: {{ analysis_data.annual.expenses }}</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Document Loaded');
+
+        // Vérifiez si Chart.js est chargé
+        console.log('Chart.js version:', Chart);
+
+        // Vérifiez si les éléments canvas existent
+        console.log('Monthly Chart Element:', document.getElementById('monthlyTrendsChart'));
+        console.log('Quarterly Chart Element:', document.getElementById('quarterlyTrendsChart'));
+        console.log('Annual Chart Element:', document.getElementById('annualTrendsChart'));
+
+        // Créez les graphiques en utilisant des valeurs sécurisées
+        const monthlyPayments = {{ analysis_data.monthly.payments|safe }};
+        const monthlyExpenses = {{ analysis_data.monthly.expenses|safe }};
+        const quarterlyPayments = {{ analysis_data.quarterly.payments|safe }};
+        const quarterlyExpenses = {{ analysis_data.quarterly.expenses|safe }};
+        const annualPayments = {{ analysis_data.annual.payments|safe }};
+        const annualExpenses = {{ analysis_data.annual.expenses|safe }};
+
+        // Ajoutez des logs pour vérifier les données
+        console.log('Monthly Payments:', monthlyPayments);
+        console.log('Monthly Expenses:', monthlyExpenses);
+        console.log('Quarterly Payments:', quarterlyPayments);
+        console.log('Quarterly Expenses:', quarterlyExpenses);
+        console.log('Annual Payments:', annualPayments);
+        console.log('Annual Expenses:', annualExpenses);
+
+        var ctxMonthly = document.getElementById('monthlyTrendsChart').getContext('2d');
+        var monthlyTrendsChart = new Chart(ctxMonthly, {
+            type: 'bar',
+            data: {
+                labels: ['Recettes', 'Dépenses'],
+                datasets: [{
+                    label: 'Mensuel',
+                    data: [monthlyPayments, monthlyExpenses],
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctxQuarterly = document.getElementById('quarterlyTrendsChart').getContext('2d');
+        var quarterlyTrendsChart = new Chart(ctxQuarterly, {
+            type: 'bar',
+            data: {
+                labels: ['Recettes', 'Dépenses'],
+                datasets: [{
+                    label: 'Trimestriel',
+                    data: [quarterlyPayments, quarterlyExpenses],
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctxAnnual = document.getElementById('annualTrendsChart').getContext('2d');
+        var annualTrendsChart = new Chart(ctxAnnual, {
+            type: 'bar',
+            data: {
+                labels: ['Recettes', 'Dépenses'],
+                datasets: [{
+                    label: 'Annuel',
+                    data: [annualPayments, annualExpenses],
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

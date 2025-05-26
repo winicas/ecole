@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Paiements des Agents{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Liste des Paiements des Agents</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Postnom</th>
+                <th>Prénom</th>
+                <th>Montant Payé</th>
+                <th>Date du Paiement</th>
+                <th>Période</th>
+                <th>Motif du Paiement</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.agent.nom_agent }}</td>
+                <td>{{ paiement.agent.postnom_agent }}</td>
+                <td>{{ paiement.agent.prenom_agent }}</td>
+                <td>{{ paiement.montant_paye }}</td>
+                <td>{{ paiement.date_paiement }}</td>
+                <td>{{ paiement.periode }}</td>
+                <td>{{ paiement.motif_paiement }}</td>
+                <td>
+                    <a href="{% url 'recu_paiement' paiement.id %}" class="btn btn-primary">Imprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

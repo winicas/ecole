@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de Bord - Directeur{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Tableau de Bord - Directeur</h1>
+    <div class="card p-4">
+        <!-- Tableau de Bord content goes here -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre d'Écoles</h5>
+                        <p class="card-text">{{ nombre_ecoles }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Nombre d'Étudiants</h5>
+                        <p class="card-text">{{ nombre_etudiants }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more dashboard cards as needed -->
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Élèves n'ayant pas totalisé le montant à payer</h1>
+  
+  <!-- Formulaire de recherche -->
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Rechercher</button>
+  </form>
+
+  <!-- Affichage des résultats si des élèves sont trouvés -->
+  {% if eleves_non_paye %}
+    <h2>Résultats</h2>
+    <ul>
+      {% for item in eleves_non_paye %}
+        <li>{{ item.eleve.nom_elev }} {{ item.eleve.prenom_elev }} - Matricule: {{ item.eleve.matricule_elev }}
+            <br> Montant payé : {{ item.total_paye }} / Montant total à payer : {{ item.montant_total_a_payer }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Formulaire pour générer le PDF -->
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="classe_elev" value="{{ form.classe_elev.value }}">
+      <input type="hidden" name="option_elev" value="{{ form.option_elev.value }}">
+      <button type="submit" name="generer_pdf">Générer la liste en PDF</button>
+    </form>
+  {% endif %}
+{% endblock %}

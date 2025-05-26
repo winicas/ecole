@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-3 fw-bold">Faites le Paiement</h2>
+        </div>
+        <div class="card-body">
+            <!-- Formulaire de recherche -->
+            <h2 class="form-title">Rechercher un élève</h2>
+            <form method="post" action="{% url 'create_or_update_paiement' %}">
+                {% csrf_token %}
+                {{ search_form.non_field_errors }}
+                <div class="form-group mb-3">
+                    {{ search_form.query|as_crispy_field }}
+                </div>
+                <button type="submit" name="search" class="btn btn-primary">Rechercher</button>
+            </form>
+
+            {% if eleve %}
+                <div class="mt-4">
+                    <h3 class="form-title">Élève trouvé :</h3>
+                    <p>{{ eleve.nom_elev }} {{ eleve.postnom_elev }} {{ eleve.prenom_elev }} (Matricule : {{ eleve.matricule_elev }})</p>
+                </div>
+
+                <!-- Formulaire de paiement -->
+                <form action="{% url 'create_or_update_paiement' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h4 class="form-title">Informations Personnelles</h4>
+                            <div class="form-group mb-3">
+                                {{ form.nom_eleve|as_crispy_field }}
+                            </div>
+                            <div class="form-group mb-3" style="display: none;">
+                                {{ form.eleve|as_crispy_field }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.montant_payer|as_crispy_field }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.motif_paiement|as_crispy_field }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.date|as_crispy_field }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <a href="{% url 'paiements_list' %}" class="btn btn-secondary">Imprimer</a>
+                        </div>
+                    </div>
+                </form>
+            {% elif search_form.is_bound %}
+                <p class="mt-4">Aucun résultat trouvé.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if form.errors %}
+    <div class="alert alert-danger mt-4">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#id_date", {
+        dateFormat: "d/m/Y",
+        locale: "fr"
+    });
+</script>
+{% endblock %}
