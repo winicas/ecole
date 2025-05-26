@@ -62,12 +62,8 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
         <Toaster richColors position="top-center" />
 
         <main className="flex items-center justify-center flex-1 p-8 m-4 bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl overflow-y-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="p-10 rounded-2xl w-full max-w-5xl"
-          >
+<div className="p-10 rounded-2xl w-full max-w-5xl"> ... 
+
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 text-left">
               Détails de l'élève :
             </h2>
@@ -86,7 +82,7 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
                 <strong>Option :</strong> {eleve.option_elev}
               </p>
             </div>
-          </motion.div>
+          </div>
         </main>
       </div>
     </div>
