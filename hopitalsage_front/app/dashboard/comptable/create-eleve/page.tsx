@@ -52,7 +52,7 @@ const CreateElevePage = () => {
       const token = localStorage.getItem('accessToken');
       if (!token) return;
       try {
-        const response = await axios.get('http://localhost:8000/api/dashboard/comptable/', {
+        const response = await axios.get('https://ecole-h4ja.onrender.com/api/dashboard/comptable/', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEcole(response.data.ecole);
@@ -78,7 +78,7 @@ const CreateElevePage = () => {
       if (!token) throw new Error('Token manquant');
   
       const response = await axios.post(
-        'http://localhost:8000/api/comptable/create-eleve/',
+        'https://ecole-h4ja.onrender.com/api/comptable/create-eleve/',
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

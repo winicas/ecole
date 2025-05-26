@@ -29,7 +29,7 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
   useEffect(() => {
     const fetchEleveDetails = async () => {
       try {
-        const response = await axios.get(`/api/eleve/${searchParams.matricule}/`, {
+        const response = await axios.get(`https://ecole-h4ja.onrender.com/api/eleve/${searchParams.matricule}/`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
         });
         setEleve(response.data);
