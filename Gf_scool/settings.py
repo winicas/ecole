@@ -6,8 +6,8 @@ import environ
 from decouple import config
 
 
-#logging.basicConfig(level=logging.DEBUG) 
-DEBUG = True
+logging.basicConfig(level=logging.DEBUG) 
+#DEBUG = True
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,13 +15,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-SECRET_KEY = 'django-insecure-(7f2frlw)isftj-^@t28j=fs7vknqw1#r=(efvsiof8v@vbozs'
+#SECRET_KEY = 'django-insecure-(7f2frlw)isftj-^@t28j=fs7vknqw1#r=(efvsiof8v@vbozs'
 #SECURITY WARNING: keep the secret key used in production secret!    toi aussi je vais te remettre soit calme
-#SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # ALLOWED_HOSTS should be set properly
-#ALLOWED_HOSTS = ["127.0.0.1", "your-domain.com"]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["ecole-1-26o4.onrender.com","127.0.0.1"]
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -55,8 +55,8 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "https://ecole-h4ja.onrender.com",
+    "https://ecole-h4ja.onrender.com",
 ]
 
 ROOT_URLCONF = 'Gf_scool.urls'

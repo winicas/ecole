@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: starbit-next-front
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    rootDir: hopitalsage_front
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://starbit.onrender.com/api
