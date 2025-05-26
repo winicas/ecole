@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SidebarComptable from "@/components/SidebarComptable";
 import HeaderComptable from "@/components/HeaderComptable";
 import DropdownMenu from "@/components/DropdownMenu";
-import PaiementModal from "@/components/PaiementModal";
+
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -116,7 +116,7 @@ export default function ComptableDashboard() {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950">
-      <SidebarComptable userFullName="Comptable" />
+      <SidebarComptable  />
       <div className="flex flex-col flex-1">
       <HeaderComptable ecole={ecole} user={user} />
 
@@ -216,14 +216,7 @@ export default function ComptableDashboard() {
         </main>
       </div>
 
-      {isPaiementModalOpen && selectedEleve !== null && (
-        <PaiementModal
-          isOpen={isPaiementModalOpen}
-          onClose={closePaiementModal}
-          eleve={selectedEleve}
-          refreshEleves={() => fetchEleves(true)}
-        />
-      )}
+     $
     </div>
   );
 }
