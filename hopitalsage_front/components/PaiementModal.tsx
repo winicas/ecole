@@ -227,5 +227,7 @@ const PaiementModal = ({ eleve, onClose, refreshEleves, nomEcole }: PaiementModa
     </div>
   );
 };
-
-export default PaiementModal;
+// ✅ Bon
+export default function Page() {
+  return <div>Paiement ici</div>;
+}
