@@ -146,7 +146,7 @@ export default function GenerateCartePage() {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950">
-      <SidebarComptable userFullName="Comptable" />
+      <SidebarComptable />
       <div className="flex flex-col flex-1">
         <HeaderComptable ecole={ecole} />
         <main className="flex-1 p-6 space-y-6">
