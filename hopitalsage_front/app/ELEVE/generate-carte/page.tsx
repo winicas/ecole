@@ -41,7 +41,7 @@ export default function GenerateCartePage() {
   const [uploadedLogo, setUploadedLogo] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [ecole, setEcole] = useState<Ecole | null>(null);
-
+ const [user, setUser] = useState<any>(null);
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedClasse, setSelectedClasse] = useState('');
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
@@ -148,7 +148,8 @@ export default function GenerateCartePage() {
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950">
       <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={ecole} />
+        <HeaderComptable ecole={ecole} user={user}/>
+
         <main className="flex-1 p-6 space-y-6">
           <h2 className="text-3xl font-extrabold text-blue-800 dark:text-blue-400">
             🎓 Génération de carte scolaire
