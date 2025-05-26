@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-starvt development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 #SECRET_KEY = 'django-insecure-(7f2frlw)isftj-^@t28j=fs7vknqw1#r=(efvsiof8v@vbozs'
@@ -97,14 +97,15 @@ AUTH_USER_MODEL = 'comptes.User'
 # Database
 DATABASES = {
     "default": {
-        "ENGINE": config("DB_ENGINE", default="django.db.backends.postgresql_psycopg2"),
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST", default="localhost"),
-        "PORT": config("DB_PORT", default=5432),
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "ecole_w0bb",
+        "USER": "ecole_w0bb_user",
+        "PASSWORD": "zYoVMIWLrTWdKXOav39d4yu4Vh5WRCHE",
+        "HOST": "dpg-d0qcc8h5pdvs73ag655g-a",
+        "PORT": "5432",
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
