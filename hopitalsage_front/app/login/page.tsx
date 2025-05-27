@@ -18,7 +18,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://ecole-h4ja.onrender.com/api/login/', {
+      const response = await axios.post('https://ecole-1-26o4.onrender.com/api/login/', {
         username,
         password,
       });
