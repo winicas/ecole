@@ -12,10 +12,6 @@ interface Ecole {
 }
 
  
-
-  const [ecole, setEcole] = useState<Ecole | null>(null);
-  const [user, setUser] = useState<any>(null);
-
 export default function CreateFraisPage() {
   const [formData, setFormData] = useState({
     option: '',
@@ -27,6 +23,9 @@ export default function CreateFraisPage() {
   const [loading, setLoading] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [editingId, setEditingId] = useState<number | null>(null)
+   const [ecole, setEcole] = useState<Ecole | null>(null);
+  const [user, setUser] = useState<any>(null);
+
 
   const OPTIONS = [
     ['maternelle', 'Maternelle'],
