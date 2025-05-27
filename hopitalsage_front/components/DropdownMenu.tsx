@@ -43,8 +43,8 @@ export default function DropdownMenu({ eleve, openPaiementModal }: Props) {
   return (
     <div className="relative" ref={menuRef}>
       <motion.button
-        
-        
+        onClick={() => setOpen((prev) => !prev)}
+        className="p-2 rounded-full bg-gray-200 dark:bg-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-600 transition"
         aria-expanded={open}
         whileTap={{ rotate: 90 }}
         whileHover={{ scale: 1.1 }}
@@ -59,7 +59,7 @@ export default function DropdownMenu({ eleve, openPaiementModal }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-           
+            className="absolute right-0 mt-3 w-60 rounded-2xl shadow-2xl bg-white dark:bg-zinc-800 z-20 overflow-hidden border border-gray-100 dark:border-zinc-700"
           >
             <ul className="py-2 text-sm text-gray-700 dark:text-gray-300">
               <li>

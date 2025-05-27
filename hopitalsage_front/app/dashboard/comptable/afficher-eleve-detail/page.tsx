@@ -25,12 +25,11 @@ interface Props {
 export default function AfficheEleveDetailPage({ searchParams }: Props) {
   const [eleve, setEleve] = useState<Eleve | null>(null);
   const [loading, setLoading] = useState(true);
-   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchEleveDetails = async () => {
       try {
-        const response = await axios.get(`https://ecole-h4ja.onrender.com/api/eleve/${searchParams.matricule}/`, {
+        const response = await axios.get(`/api/eleve/${searchParams.matricule}/`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
         });
         setEleve(response.data);
@@ -58,12 +57,16 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950 font-sans">
       <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={{ id: 0, nom: "Nom École", adresse: "", telephone: "" }} user={user}/>
+        <HeaderComptable ecole={{ id: 0, nom: "Nom École", adresse: "", telephone: "" }} />
         <Toaster richColors position="top-center" />
 
         <main className="flex items-center justify-center flex-1 p-8 m-4 bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl overflow-y-auto">
-<div className="p-10 rounded-2xl w-full max-w-5xl"> ... 
-
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="p-10 rounded-2xl w-full max-w-5xl"
+          >
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 text-left">
               Détails de l'élève :
             </h2>
@@ -82,7 +85,7 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
                 <strong>Option :</strong> {eleve.option_elev}
               </p>
             </div>
-          </div>
+          </motion.div>
         </main>
       </div>
     </div>

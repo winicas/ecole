@@ -25,7 +25,7 @@ export default function EditElevePage() {
     const fetchEleve = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axios.get(`https://ecole-h4ja.onrender.com/api/eleves/${eleveId}/`, {
+        const response = await axios.get(`http://localhost:8000/api/eleves/${eleveId}/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEleve(response.data);

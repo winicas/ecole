@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SidebarComptable from "@/components/SidebarComptable";
 import HeaderComptable from "@/components/HeaderComptable";
 import DropdownMenu from "@/components/DropdownMenu";
-
+import PaiementModal from "@/components/PaiementModal";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -116,7 +116,7 @@ export default function ComptableDashboard() {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950">
-      <SidebarComptable  />
+      <SidebarComptable/>
       <div className="flex flex-col flex-1">
       <HeaderComptable ecole={ecole} user={user} />
 
@@ -174,6 +174,7 @@ export default function ComptableDashboard() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4, delay: index * 0.05 }}
+                        className="border-t dark:border-zinc-700 text-blue-800 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-zinc-700 even:bg-gray-50 dark:even:bg-zinc-800/50 transition-colors"
                       >
                         <td className="py-2">{eleve.nom_elev}</td>
                         <td className="py-2">{eleve.postnom_elev}</td>
@@ -198,8 +199,8 @@ export default function ComptableDashboard() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                 
-                  
+                  onClick={() => fetchEleves()}
+                  className="flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   Voir Plus
                   <motion.span
@@ -215,7 +216,7 @@ export default function ComptableDashboard() {
         </main>
       </div>
 
-     $
+     
     </div>
   );
 }

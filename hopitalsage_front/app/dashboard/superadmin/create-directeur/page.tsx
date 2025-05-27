@@ -66,7 +66,7 @@ const AjouterDirecteur = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-         
+          className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#007BFF]"
         ></motion.div>
       </div>
     );
@@ -149,7 +149,7 @@ const AjouterDirecteur = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            
+            className="text-3xl font-bold text-center text-[#007BFF] mb-6"
           >
             Ajouter un Directeur
           </motion.h1>
@@ -158,7 +158,7 @@ const AjouterDirecteur = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            
+            className="bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 max-w-4xl mx-auto"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Champ Nom d'utilisateur */}

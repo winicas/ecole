@@ -5,8 +5,6 @@ import axios from 'axios';
 import SidebarComptable from '@/components/SidebarComptable';
 import HeaderComptable from '@/components/HeaderComptable';
 import { motion } from 'framer-motion';
-
-
 import { Toaster, toast } from 'sonner'; // Pour les toasts
 import { Progress } from "@/components/ui/progress"; // Barre de progression
 
@@ -47,16 +45,15 @@ const CreateElevePage = () => {
 
   const [ecole, setEcole] = useState<Ecole | null>(null);
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const MotionSection = motion.section;
   const [user, setUser] = useState<any>(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const fetchEcole = async () => {
       const token = localStorage.getItem('accessToken');
       if (!token) return;
       try {
-        const response = await axios.get('https://ecole-h4ja.onrender.com/api/dashboard/comptable/', {
+        const response = await axios.get('http://localhost:8000/api/dashboard/comptable/', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEcole(response.data.ecole);
@@ -82,7 +79,7 @@ const CreateElevePage = () => {
       if (!token) throw new Error('Token manquant');
   
       const response = await axios.post(
-        'https://ecole-h4ja.onrender.com/api/comptable/create-eleve/',
+        'http://localhost:8000/api/comptable/create-eleve/',
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -130,7 +127,7 @@ const CreateElevePage = () => {
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950 font-sans">
       <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={ecole ?? { id: 0, nom: 'Chargement...', adresse: '', telephone: '' }} user={user}/>
+        <HeaderComptable ecole={ecole ?? { id: 0, nom: 'Chargement...', adresse: '', telephone: '' }} user={user} />
         <Toaster richColors position="top-center" />
 
         {loading && <Progress value={progress} className="h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />}
@@ -140,7 +137,7 @@ const CreateElevePage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            
+            className="p-10 rounded-2xl w-full max-w-5xl"
           >
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 text-left">
               Ajouter un nouvel élève
@@ -195,7 +192,7 @@ const CreateElevePage = () => {
                   required
                   className="mt-1 block w-full rounded-lg bg-gray-100 dark:bg-zinc-700 text-gray-900 dark:text-white p-2.5"
                 >
-                  <option value="">SELECTION</option>
+                  <option value="M">SELECTION</option>
                   <option value="M">Masculin</option>
                   <option value="F">Féminin</option>
                 </select>

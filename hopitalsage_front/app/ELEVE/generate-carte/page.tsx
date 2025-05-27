@@ -41,7 +41,8 @@ export default function GenerateCartePage() {
   const [uploadedLogo, setUploadedLogo] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [ecole, setEcole] = useState<Ecole | null>(null);
- const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
+
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedClasse, setSelectedClasse] = useState('');
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
@@ -53,19 +54,19 @@ export default function GenerateCartePage() {
     const token = localStorage.getItem('accessToken');
     if (!token) return;
 
-    axios.get('https://ecole-h4ja.onrender.com/api/eleves/all/', {
+    axios.get('http://localhost:8000/api/eleves/all/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEleves(res.data);
       setFilteredEleves(res.data);
     }).catch(err => console.error('Erreur chargement élèves:', err));
 
-    axios.get('https://ecole-h4ja.onrender.com/api/dashboard/comptable/', {
+    axios.get('http://localhost:8000/api/dashboard/comptable/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEcole(res.data.ecole);
       if (res.data.ecole.logo) {
-        setLogoUrl(`https://ecole-h4ja.onrender.com${res.data.ecole.logo}`);
+        setLogoUrl(`http://localhost:8000${res.data.ecole.logo}`);
       }
     }).catch(err => console.error('Erreur chargement école:', err));
   }, []);
@@ -104,7 +105,7 @@ export default function GenerateCartePage() {
         reader.readAsDataURL(uploadedLogo);
       });
     } else if (ecole.logo) {
-      base64Logo = await convertImageToBase64(`https://ecole-h4ja.onrender.com${ecole.logo}`);
+      base64Logo = await convertImageToBase64(`http://localhost:8000${ecole.logo}`);
     }
 
     const blob = await pdf(
@@ -148,8 +149,7 @@ export default function GenerateCartePage() {
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950">
       <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={ecole} user={user}/>
-
+        <HeaderComptable ecole={ecole} user={user} />
         <main className="flex-1 p-6 space-y-6">
           <h2 className="text-3xl font-extrabold text-blue-800 dark:text-blue-400">
             🎓 Génération de carte scolaire

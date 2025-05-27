@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const res = await fetch("https://ecole-h4ja.onrender.com/api/anneescolaires/", {
+    const res = await fetch("http://localhost:8000/api/anneescolaires/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
