@@ -84,7 +84,7 @@ const AdminDashboard = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#007BFF]"
+
         ></motion.div>
       </div>
     );
@@ -110,7 +110,7 @@ const AdminDashboard = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-center text-[#007BFF] mb-6"
+            
           >
             Tableau de Bord Admin
           </motion.h1>
@@ -120,11 +120,11 @@ const AdminDashboard = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"
+           
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="card shadow-lg border-0 p-6 bg-white dark:bg-zinc-800 rounded-xl overflow-hidden"
+              
             >
               <h5 className="card-title text-xl font-bold text-[#007BFF]">Ajouter École</h5>
               <p className="card-text text-gray-600 dark:text-gray-300">
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
 
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="card shadow-lg border-0 p-6 bg-white dark:bg-zinc-800 rounded-xl overflow-hidden"
+              
             >
               <h5 className="card-title text-xl font-bold text-[#28A745]">Ajouter Paiement</h5>
               <p className="card-text text-gray-600 dark:text-gray-300">
@@ -160,7 +160,7 @@ const AdminDashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-4"
+           
           >
             <h2 className="text-2xl font-bold text-[#007BFF] mb-4">Liste des Écoles Enregistrées</h2>
             <Table>

@@ -106,7 +106,7 @@ const AjouterÉcole = ({ ecoleInitiale }: { ecoleInitiale?: Ecole }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-center text-[#007BFF] mb-6"
+            
           >
             {ecoleInitiale ? 'Modifier École' : 'Ajouter École'}
           </motion.h1>
@@ -115,7 +115,7 @@ const AjouterÉcole = ({ ecoleInitiale }: { ecoleInitiale?: Ecole }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-white dark:bg-zinc-800 rounded-xl shadow-lg p-6 max-w-4xl mx-auto"
+         
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
