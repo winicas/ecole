@@ -14,10 +14,6 @@ interface Ecole {
   telephone: string | null;
 }
 
- 
-
-  const [ecole, setEcole] = useState<Ecole | null>(null);
-  const [user, setUser] = useState<any>(null);
 
 
 
@@ -46,6 +42,9 @@ export default function ListePaiementOrdrePage() {
   const [selectedClasse, setSelectedClasse] = useState('');
   const [quota, setQuota] = useState('');
   const router = useRouter();
+   const [ecole, setEcole] = useState<Ecole | null>(null);
+  const [user, setUser] = useState<any>(null);
+
 
   const handleGeneratePDF = () => {
     if (!selectedOption || !selectedClasse || !quota) {
