@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     color: '#34495e',
   },
   table: {
-  
     width: 'auto',
     marginTop: 10,
     borderWidth: 1,
@@ -109,21 +108,23 @@ const PDFDocument = ({
 export default function GeneratePDFPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+
   const option = searchParams.get('option') || '';
   const classe = searchParams.get('classe') || '';
   const quota = searchParams.get('quota') || '';
+
   const [data, setData] = useState<EleveData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/eleves-en-ordre', {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves-en-ordre`, {
           params: { option, classe, quota },
         });
 
         setData(response.data);
-        console.log('Données reçues :', response.data); // ✅ ICI
+        console.log('Données reçues :', response.data);
       } catch (error) {
         console.error('Erreur de chargement :', error);
       } finally {
@@ -131,10 +132,28 @@ export default function GeneratePDFPage() {
       }
     };
 
-    fetchData();
+    if (option && classe && quota) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
   }, [option, classe, quota]);
 
   const currentDate = new Date().toLocaleDateString();
+
+  if (!option || !classe || !quota) {
+    return (
+      <div className="p-8 text-center">
+        <p className="text-red-600">Paramètres manquants. Veuillez réessayer depuis la liste.</p>
+        <button
+          onClick={() => router.push('/dashboard/comptable')}
+          className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded shadow"
+        >
+          Retour
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 space-y-4 text-center">
@@ -142,15 +161,13 @@ export default function GeneratePDFPage() {
         <p className="text-gray-600">Chargement des données...</p>
       ) : (
         <>
-          {typeof window !== 'undefined' && (
-            <PDFDownloadLink
-              document={<PDFDocument data={data} option={option} classe={classe} date={currentDate} />}
-              fileName={`eleves-en-ordre-${option}-${classe}.pdf`}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded shadow-md transition"
-            >
-              {({ loading }) => (loading ? 'Génération du PDF...' : '📄 Télécharger le PDF')}
-            </PDFDownloadLink>
-          )}
+          <PDFDownloadLink
+            document={<PDFDocument data={data} option={option} classe={classe} date={currentDate} />}
+            fileName={`eleves-en-ordre-${option}-${classe}.pdf`}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded shadow-md transition"
+          >
+            {({ loading }) => (loading ? 'Génération du PDF...' : '📄 Télécharger le PDF')}
+          </PDFDownloadLink>
 
           <button
             onClick={() => router.push('/dashboard/comptable')}
