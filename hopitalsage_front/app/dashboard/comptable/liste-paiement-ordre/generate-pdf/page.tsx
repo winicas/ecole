@@ -6,49 +6,13 @@ import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-
 import axios from 'axios';
 
 const styles = StyleSheet.create({
-  page: {
-    padding: 40,
-    fontSize: 12,
-    fontFamily: 'Times-Roman',
-  },
-  title: {
-    fontSize: 18,
-    textAlign: 'center',
-    marginBottom: 12,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    color: '#2c3e50',
-  },
-  subtitle: {
-    fontSize: 12,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#34495e',
-  },
-  table: {
-    width: 'auto',
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderStyle: 'solid',
-  },
-  tableRow: {
-    flexDirection: 'row',
-  },
-  tableColHeader: {
-    width: '16.66%',
-    backgroundColor: '#3498db',
-    color: 'white',
-    padding: 5,
-    fontWeight: 'bold',
-  },
-  tableCol: {
-    width: '16.66%',
-    borderStyle: 'solid',
-    borderWidth: 0.5,
-    borderColor: '#ccc',
-    padding: 5,
-  },
+  page: { padding: 40, fontSize: 12, fontFamily: 'Times-Roman' },
+  title: { fontSize: 18, textAlign: 'center', marginBottom: 12, textTransform: 'uppercase', fontWeight: 'bold', color: '#2c3e50' },
+  subtitle: { fontSize: 12, textAlign: 'center', marginBottom: 20, color: '#34495e' },
+  table: { width: 'auto', marginTop: 10, borderWidth: 1, borderColor: '#ccc', borderStyle: 'solid' },
+  tableRow: { flexDirection: 'row' },
+  tableColHeader: { width: '16.66%', backgroundColor: '#3498db', color: 'white', padding: 5, fontWeight: 'bold' },
+  tableCol: { width: '16.66%', borderStyle: 'solid', borderWidth: 0.5, borderColor: '#ccc', padding: 5 },
 });
 
 interface EleveData {
@@ -105,7 +69,7 @@ const PDFDocument = ({
   </Document>
 );
 
-export default function GeneratePDFPage() {
+export default function GeneratePDFClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -124,7 +88,6 @@ export default function GeneratePDFPage() {
         });
 
         setData(response.data);
-        console.log('Données reçues :', response.data);
       } catch (error) {
         console.error('Erreur de chargement :', error);
       } finally {
@@ -144,7 +107,7 @@ export default function GeneratePDFPage() {
   if (!option || !classe || !quota) {
     return (
       <div className="p-8 text-center">
-        <p className="text-red-600">Paramètres manquants. Veuillez réessayer depuis la liste.</p>
+        <p className="text-red-600">Paramètres manquants.</p>
         <button
           onClick={() => router.push('/dashboard/comptable')}
           className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded shadow"
