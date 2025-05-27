@@ -5,6 +5,8 @@ import axios from 'axios';
 import SidebarComptable from '@/components/SidebarComptable';
 import HeaderComptable from '@/components/HeaderComptable';
 import { motion } from 'framer-motion';
+
+
 import { Toaster, toast } from 'sonner'; // Pour les toasts
 import { Progress } from "@/components/ui/progress"; // Barre de progression
 
