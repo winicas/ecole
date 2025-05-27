@@ -5,6 +5,21 @@ import { useRouter } from 'next/navigation';
 import SidebarComptable from '@/components/SidebarComptable';
 import HeaderComptable from '@/components/HeaderComptable';
 
+
+interface Ecole {
+  id: number;
+  nom: string;
+  adresse: string;
+  telephone: string | null;
+}
+
+ 
+
+  const [ecole, setEcole] = useState<Ecole | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+
+
 const options = [
   { value: 'maternelle', label: 'Maternelle' },
   { value: 'primaire', label: 'Primaire' },
@@ -50,7 +65,7 @@ export default function ListePaiementOrdrePage() {
     <div className="flex min-h-screen bg-gray-100">
       <SidebarComptable />
       <div className="flex-1 flex flex-col">
-        <HeaderComptable />
+        <HeaderComptable ecole={ecole} user={user} />
         <main className="flex-1 p-6">
           <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
             <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">
