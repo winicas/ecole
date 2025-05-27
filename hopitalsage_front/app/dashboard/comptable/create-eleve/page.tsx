@@ -48,6 +48,7 @@ const CreateElevePage = () => {
   const [ecole, setEcole] = useState<Ecole | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const MotionSection = motion.section;
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
@@ -139,7 +140,7 @@ const CreateElevePage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="p-10 rounded-2xl w-full max-w-5xl"
+            
           >
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 text-left">
               Ajouter un nouvel élève
@@ -194,7 +195,7 @@ const CreateElevePage = () => {
                   required
                   className="mt-1 block w-full rounded-lg bg-gray-100 dark:bg-zinc-700 text-gray-900 dark:text-white p-2.5"
                 >
-                  <option value="M">SELECTION</option>
+                  <option value="">SELECTION</option>
                   <option value="M">Masculin</option>
                   <option value="F">Féminin</option>
                 </select>
