@@ -8,7 +8,7 @@ django.setup()
 User = get_user_model()
 
 # Informations du superutilisateur
-username = 'admin'
+username = 'william'
 email = 'willyloseka@gmail.com'
 password = 'nicalose'
 
