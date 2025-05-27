@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Page d'Accueil{% endblock %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Menu Principal</h1>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'create_or_update_paiement' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="text">Faire le paiement des frais scolaires</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'enregistrer_eleve' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="text">Enregistrer le nouveau élève</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'list_paiement_autres_frais' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <div class="text">Paiement Autres Frais</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'recherche_paiement' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-money-check-alt"></i>
+                </div>
+                <div class="text">Vérifier le paiement de l'élève</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'eleves_non_paye' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="text">Imprimer la liste des élèves insolvable</div>
+            </a>
+        </div>
+        <!-- Option ajoutée pour imprimer les reçus des élèves -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'paiements_list' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-print"></i>
+                </div>
+                <div class="text">Imprimer les reçus des élèves</div>
+            </a>
+        </div>
+        <!-- Nouvelle option ajoutée pour "Liste Autres Frais" -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'imprimer_eleves_par_classe_option' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-list"></i>
+                </div>
+                <div class="text">Liste Autres Frais</div>
+            </a>
+        </div>
+
+        <!-- Nouvelle option pour la Mise à jour des élèves -->
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'liste_eleves' %}" class="menu-item">  <!-- Lien vers la mise à jour de l'élève -->
+                <div class="icon">
+                    <i class="fa-solid fa-user-edit"></i>
+                </div>
+                <div class="text">Mise à jour élève</div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

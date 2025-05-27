@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau de Bord{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Tableau de Bord Financier</h1>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Total des Paiements de Scolarité</div>
+                <div class="card-body">
+                    <h3>{{ total_paiement_scolarite }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">Total des Paiements pour Autres Frais</div>
+                <div class="card-body">
+                    <h3>{{ total_paiement_autres_frais }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-warning text-white">Total des Salaires Payés</div>
+                <div class="card-body">
+                    <h3>{{ total_paiement_salaire }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">Total des Achats de Fournitures</div>
+                <div class="card-body">
+                    <h3>{{ total_achats_fournitures }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Graphique des Recettes Mensuelles</div>
+                <div class="card-body">
+                    <!-- Code pour afficher le graphique des recettes -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Graphique des Dépenses Mensuelles</div>
+                <div class="card-body">
+                    <!-- Code pour afficher le graphique des dépenses -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">Solde Actuel</div>
+                <div class="card-body">
+                    <h3>{{ solde_actuel }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

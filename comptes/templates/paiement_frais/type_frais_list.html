@@ -1,0 +1,49 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Types de Frais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        h1 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Types de Frais</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Montant Total à Payer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for type_frais in types_frais %}
+            <tr>
+                <td>{{ type_frais.nom }}</td>
+                <td>{{ type_frais.montant_total_a_payer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

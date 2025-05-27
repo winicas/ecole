@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Page d'Accueil{% endblock %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Menu Principal</h1>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'create_or_update_paiement' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                </div>
+                <div class="text">Faire le paiement des frais scolaires</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'enregistrer_eleve' %}" class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="text">Enregistrer le nouveau élève</div>
+            </a>
+        </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'list_paiement_autres_frais' %}"  class="menu-item">
+                <div class="icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <div class="text">Paiement Autres Frais</div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

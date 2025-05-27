@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h1 class="text-center">Admin Dashboard</h1>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ajouter École</h5>
+                    <p class="card-text">Ajoutez une nouvelle école à votre système.</p>
+                    <a href="{% url 'create_ecole' %}" class="btn btn-primary">Ajouter École</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ajouter Paiement</h5>
+                    <p class="card-text">Enregistrez un nouveau paiement.</p>
+                    <a href="{% url 'ajouter_paiement' %}" class="btn btn-success">Ajouter Paiement</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more sections as needed -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load static %}
+<div id="side-nav">
+    <div class="main-menu">
+        <div class="top-side text-center" style="background-image: url({% static 'img/dotted.jpg' %});">
+            <div class="desktop-hide">
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <a href="/">
+                <img src="{% static 'img/log.png' %}" alt="Logoyes">
+            </a>
+            <p class="text-orange">
+                <mark>
+                    <i class="far fa-hand-point-right"></i>
+                    {{ request.user.get_user_role }}
+                </mark>
+            </p>
+        </div>
+
+        {% url 'admin_dashboard' as admin_dashboard_url %}
+        {% url 'create_ecole' as create_ecole_url %}
+        {% url 'create_directeur' as create_directeur_url %}
+        {% url 'create_admin' as create_admin_url %}
+        {% url 'create_comptable' as create_comptable_url %}
+        {% url 'home_rapport_et_analyse' as rapport_url %}
+        {% url 'historique_complet' as historique_complet_url %}
+        {% url 'impression_eleve_paye' as impression_url %}
+        {% url 'payment_success_view' as payment_success_url %}
+        {% url 'directeur_dashboard' as directeur_dashboard_url %}
+        {% url 'homess' as homess_url %}
+        {% url 'liste_archives' as liste_archives_url %}
+        {% url 'fixer_frais_scolaire' as fixer_frais_scolaire_url %} <!-- Ajout de l'URL pour fixer_frais_scolaire -->
+        {% url 'daily_report' as daily_report_url %} <!-- Ajout de l'URL pour le rapport journalier -->
+
+        <ul>
+            {% if request.user.is_superuser %}
+            <li class="{% if request.path == admin_dashboard_url %}active{% endif %}">
+                <a href="{{ admin_dashboard_url }}"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a>
+            </li>
+            <li class="{% if request.path == create_ecole_url %}active{% endif %}">
+                <a href="{{ create_ecole_url }}"><i class="fas fa-school"></i> Ajouter École</a>
+            </li>
+            <li class="{% if request.path == create_admin_url %}active{% endif %}">
+                <a href="{{ create_admin_url }}"><i class="fas fa-user-shield"></i> Administrateurs</a>
+            </li>
+            <li class="{% if request.path == create_directeur_url %}active{% endif %}">
+                <a href="{{ create_directeur_url }}"><i class="fas fa-user-tie"></i> Directeur</a>
+            </li>
+            <li class="{% if request.path == create_comptable_url %}active{% endif %}">
+                <a href="{{ create_comptable_url }}"><i class="fas fa-calculator"></i> Comptables</a>
+            </li>
+            <li class="{% if request.path == rapport_url %}active{% endif %}">
+                <a href="{{ rapport_url }}"><i class="fas fa-chart-line"></i> Rapport & Analyse</a>
+            </li>
+            <li class="{% if request.path == historique_complet_url %}active{% endif %}">
+                <a href="{{ historique_complet_url }}"><i class="fas fa-history"></i> Historique Complet</a>
+            </li>
+            <li class="{% if request.path == impression_url %}active{% endif %}">
+                <a href="{{ impression_url }}"><i class="fas fa-print"></i> Impression Paiements</a>
+            </li>
+            <li class="{% if request.path == fixer_frais_scolaire_url %}active{% endif %}"> <!-- Ajout de l'option Fixer le frais scolaire -->
+                <a href="{{ fixer_frais_scolaire_url }}"><i class="fas fa-money-check-alt"></i> Fixer le frais scolaire pour cette année</a>
+            </li>
+            <li class="{% if request.path == daily_report_url %}active{% endif %}"> <!-- Ajout de l'option Rapport Journalier -->
+                <a href="{{ daily_report_url }}"><i class="fas fa-calendar-day"></i> Rapport Journalier</a>
+            </li>
+            {% endif %}
+
+            {% if request.user.role == 'directeur' %}
+            <li class="{% if request.path == directeur_dashboard_url %}active{% endif %}">
+            
+
+         
+        </ul>
+    </div>
+</div>

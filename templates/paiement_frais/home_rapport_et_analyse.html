@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Rapport et Analyse Financière
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Rapport et Analyse Financière</h1>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total des Paiements</h5>
+                    <p class="card-text">{{ total_paiements|floatformat:2 }} {{ "FCFA" }}</p>
+                    <a href="{% url 'financial_report' 'mensuel' %}" class="btn btn-primary">Voir le Rapport Mensuel</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total des Salaires</h5>
+                    <p class="card-text">{{ total_salaires|floatformat:2 }} {{ "FCFA" }}</p>
+                    <a href="{% url 'financial_report' 'trimestriel' %}" class="btn btn-success">Voir le Rapport Trimestriel</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total des Achats</h5>
+                    <p class="card-text">{{ total_achats|floatformat:2 }} {{ "FCFA" }}</p>
+                    <a href="{% url 'financial_report' 'annuel' %}" class="btn btn-warning">Voir le Rapport Annuel</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Autres Frais</h5>
+                    <p class="card-text">{{ total_autres_frais|floatformat:2 }} {{ "FCFA" }}</p>
+                    <a href="{% url 'analyze_financial_trends' %}" class="btn btn-info">Analyse des Tendances</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'historique_complet' %}" class="btn btn-secondary mt-3">
+        Historique Complet de Toutes Transactions
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Modifier le Paiement</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Modifier le paiement</button>
+</form>
+<a href="{% url 'paiements_list' %}">Retour à la liste des paiements</a>
+{% endblock %}

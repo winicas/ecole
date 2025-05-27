@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="mb-3 fw-bold">Enregistrer un Nouveau Élève</h2>
+            <a href="{% url 'create_or_update_paiement' %}" class="btn btn-secondary">Faites le paiement ici</a>
+        </div>
+        <div class="card-body">
+            {% if matricule %}
+                <div class="alert alert-success">
+                    Le matricule de l'élève nouvellement enregistré est : <strong>{{ matricule }}</strong>
+                </div>
+            {% endif %}
+            <form method="post" action="{% url 'enregistrer_eleve' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="id_nom_elev">Nom :</label>
+                    <input type="text" id="id_nom_elev" name="nom_elev" class="form-control" placeholder="Nom de l'élève" value="{{ form.nom_elev.value }}" oninput="toUpperCase(this)">
+                </div>
+                <div class="form-group">
+                    <label for="id_postnom_elev">Postnom :</label>
+                    <input type="text" id="id_postnom_elev" name="postnom_elev" class="form-control" placeholder="Postnom de l'élève" value="{{ form.postnom_elev.value }}" oninput="toUpperCase(this)">
+                </div>
+                <div class="form-group">
+                    <label for="id_prenom_elev">Prénom :</label>
+                    <input type="text" id="id_prenom_elev" name="prenom_elev" class="form-control" placeholder="Prénom de l'élève" value="{{ form.prenom_elev.value }}" oninput="capitalizeFirstLetter(this)">
+                </div>
+                <div class="form-group">
+                    <label for="id_date_naissance_elev">Date de Naissance :</label>
+                    <input type="date" id="id_date_naissance_elev" name="date_naissance_elev" class="form-control" value="{{ form.date_naissance_elev.value }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_option_elev">Option :</label>
+                    <select id="id_option_elev" name="option_elev" class="form-control">
+                        <option value="" selected disabled>Choisissez une option</option>
+                        {% for value, label in form.option_elev.field.choices %}
+                            <option value="{{ value }}" {% if value == form.option_elev.value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="id_classe_elev">Classe :</label>
+                    <select id="id_classe_elev" name="classe_elev" class="form-control">
+                        <option value="" selected disabled>Choisissez une classe</option>
+                        {% for value, label in form.classe_elev.field.choices %}
+                            <option value="{{ value }}" {% if value == form.classe_elev.value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="id_numero_parent1">Numéro du Parent 1 :</label>
+                    <input type="text" id="id_numero_parent1" name="numero_parent1" class="form-control" placeholder="Numéro de téléphone du Parent 1" value="{{ form.numero_parent1.value }}">
+                </div>
+                <div class="form-group">
+                    <label for="id_numero_parent2">Numéro du Parent 2 :</label>
+                    <input type="text" id="id_numero_parent2" name="numero_parent2" class="form-control" placeholder="Numéro de téléphone du Parent 2" value="{{ form.numero_parent2.value }}">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#id_date_naissance_elev").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:2100"
+        });
+    });
+
+    function toUpperCase(field) {
+        field.value = field.value.toUpperCase();
+    }
+
+    function capitalizeFirstLetter(field) {
+        field.value = field.value.charAt(0).toUpperCase() + field.value.slice(1).toLowerCase();
+    }
+</script>
+{% endblock %}

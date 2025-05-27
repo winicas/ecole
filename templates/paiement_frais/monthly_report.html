@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Mensuel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h2 {
+            font-size: 24px;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        /* Ajuster la table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        /* Bordures des cellules */
+        table, th, td {
+            border: 1px solid #bdc3c7;
+        }
+        /* Style pour les cellules */
+        th, td {
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+            white-space: nowrap; /* Empêche les retours à la ligne */
+            overflow: hidden; /* Masque le contenu débordant */
+            text-overflow: ellipsis; /* Ajoute "..." si le contenu déborde */
+        }
+        /* Couleur de l'en-tête */
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        /* Alternance de couleur pour les lignes */
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+        /* Section des totaux */
+        .totals {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+        .totals span {
+            color: #e74c3c;
+        }
+        /* Pied de page */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        /* Orientation paysage pour l'impression */
+        @media print {
+            @page {
+                size: landscape; /* Paysage */
+            }
+            /* Style pour l'impression */
+            body {
+                font-size: 12px;
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+            table {
+                table-layout: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rapport Mensuel</h1>
+        <h2>Rapport Mensuel - {{ month }}/{{ year }}</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Total Paiement des frais scolaires</th>
+                    <th>Total Autres frais</th>
+                    <th>Total des Salaires</th>
+                    <th>Total Achats</th>
+                    <th>Solde</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rapport in rapports %}
+                <tr>
+                    <td>{{ rapport.date }}</td>
+                    <td>{{ rapport.total_paiement_frais_scolaires }}</td>
+                    <td>{{ rapport.total_autres_frais }}</td>
+                    <td>{{ rapport.total_salaires }}</td>
+                    <td>{{ rapport.total_achats }}</td>
+                    <td>{{ rapport.solde }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><strong>Total Général</strong></td>
+                    <td><strong>{{ total_frais_scolaires }}</strong></td>
+                    <td><strong>{{ total_autres_frais }}</strong></td>
+                    <td><strong>{{ total_salaires }}</strong></td>
+                    <td><strong>{{ total_achats }}</strong></td>
+                    <td><strong>{{ total_solde }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© {{ current_year }} Gestion Financière Scolaire. Tous droits réservés.</p>
+        </div>
+    </div>
+
+</body>
+</html>

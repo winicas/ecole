@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard du Comptable{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Tableau de bord du Comptable</h1>
+
+    <div class="row">
+        <!-- École Info Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">École : {{ ecole.nom }}</h5>
+                    <p class="card-text">Adresse : {{ ecole.adresse }}</p>
+                    <p class="card-text">Contact : {{ ecole.telephone }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Date et Heure Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Date et Heure</h5>
+                    <p class="card-text" id="date-time"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message de Bienvenue -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success text-center" role="alert">
+                <h4 class="alert-heading">Bonjour cher(e) {{ request.user.first_name|default:request.user.username }},</h4>
+                <p>Nous espérons que vous passez une bonne journée. Bon travail !</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        };
+        const dateString = now.toLocaleDateString('fr-FR', options);
+        const timeString = now.toLocaleTimeString('fr-FR');
+        document.getElementById('date-time').innerHTML = `${dateString} ${timeString}`;
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+    // Initialize the date and time immediately
+    updateDateTime();
+</script>
+{% endblock %}

@@ -1,0 +1,5 @@
+{
+  "/login/page": "app/login/page.js",
+  "/dashboard/comptable/page": "app/dashboard/comptable/page.js",
+  "/ELEVE/generate-carte/page": "app/ELEVE/generate-carte/page.js"
+}

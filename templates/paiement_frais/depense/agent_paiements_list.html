@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Paiements des Agents{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between mb-4">
+        <h2 class="text-center">Liste des Paiements des Agents</h2>
+        <a href="{% url 'agent_list' %}" class="btn btn-primary btn-lg">Retour à la Liste des Agents</a>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom</th>
+                    <th>Postnom</th>
+                    <th>Prénom</th>
+                    <th>Montant Payé (Dernier)</th>
+                    <th>Date du Paiement</th>
+                    <th>Période</th>
+                    <th>Motif du Paiement</th>
+                    <th>Montant Total Payé</th>
+                    <th>Salaire Total</th>
+                    <th>Montant Restant</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in agents_paiements %}
+                <tr>
+                    <td>{{ data.agent.nom_agent }}</td>
+                    <td>{{ data.agent.postnom_agent }}</td>
+                    <td>{{ data.agent.prenom_agent }}</td>
+
+                    {% if data.dernier_paiement %}
+                        <td>{{ data.dernier_paiement.montant_paye }} Fc</td>
+                        <td>{{ data.dernier_paiement.date_paiement }}</td>
+                        <td>{{ data.dernier_paiement.periode }}</td>
+                        <td>{{ data.dernier_paiement.motif_paiement }}</td>
+                    {% else %}
+                        <td colspan="4" class="text-center">Aucun paiement disponible</td>
+                    {% endif %}
+
+                    <td>{{ data.montant_total_paye }} Fc</td>
+                    <td>{{ data.agent.salaire_total }} Fc</td>
+                    <td>{{ data.montant_restant }} Fc</td>
+
+                    <td>
+                        {% if data.dernier_paiement %}
+                            <a href="{% url 'recu_paiement' data.dernier_paiement.id %}" class="btn btn-info btn-sm">Imprimer Reçu</a>
+                            <a href="{% url 'modifier_paiement_agent' data.dernier_paiement.id %}" class="btn btn-warning btn-sm">Modifier Salaire</a>
+                        {% else %}
+                            <span class="text-muted">Aucun paiement</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

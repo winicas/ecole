@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de l'Administrateur{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Tableau de bord de l'Administrateur d'École</h1>
+
+    <div class="row">
+        <!-- École Info Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">École : {{ ecole.nom }}</h5>
+                    <p class="card-text">Adresse : {{ ecole.adresse }}</p>
+                    <p class="card-text">Contact : {{ ecole.contact }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comptables Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Comptables Associés</h5>
+                    <ul class="list-group">
+                        {% for comptable in comptables %}
+                        <li class="list-group-item">{{ comptable.username }} - {{ comptable.email }}</li>
+                        {% empty %}
+                        <li class="list-group-item">Aucun comptable associé.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paiements Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Paiements</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Montant</th>
+                                <th>Date</th>
+                                <th>Motif</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for paiement in paiements %}
+                            <tr>
+                                <td>{{ paiement.id }}</td>
+                                <td>{{ paiement.montant_payer }}</td>
+                                <td>{{ paiement.date }}</td>
+                                <td>{{ paiement.motif_paiement }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">Aucun paiement trouvé.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'ajouter_paiement' %}" class="btn btn-primary">Ajouter un paiement</a>
+</div>
+{% endblock %}

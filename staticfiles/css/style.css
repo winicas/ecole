@@ -1,0 +1,343 @@
+body {
+    padding-top: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+/* Styles généraux pour le conteneur de menu */
+.menu-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Couleur de fond gris clair */
+    border-radius: 8px;
+    /* Coins arrondis pour le conteneur */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ombre portée légère */
+    margin: 20px auto;
+    /* Espacement autour du conteneur */
+    max-width: 800px;
+    /* Largeur maximale du conteneur */
+}
+
+/* Style pour les titres */
+.highlighted-heading {
+    color: #333;
+    /* Couleur du texte en gris foncé */
+    font-family: 'Roboto', sans-serif;
+    /* Police moderne et élégante */
+    font-size: 2.5rem;
+    /* Taille de police */
+    font-weight: bold;
+    /* Poids de la police pour plus de visibilité */
+    margin-bottom: 20px;
+    /* Espacement inférieur */
+}
+
+/* Styles pour les éléments de menu */
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    /* Espacement entre les éléments du menu */
+}
+
+.menu-item {
+    background-color: #ffffff;
+    /* Couleur de fond blanche */
+    border: 1px solid #ddd;
+    /* Bordure légère */
+    border-radius: 8px;
+    /* Coins arrondis pour chaque élément */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ombre portée légère */
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    /* Largeur fixe pour les éléments */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Effet de transition */
+}
+
+.menu-item:hover {
+    background-color: #f9f9f9;
+    /* Changement de couleur au survol */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ombre portée au survol */
+}
+
+.menu-item .icon {
+    font-size: 3rem;
+    /* Taille des icônes */
+    margin-bottom: 10px;
+    /* Espacement inférieur */
+}
+
+.menu-item .text {
+    font-size: 1.2rem;
+    /* Taille du texte */
+    color: #333;
+    /* Couleur du texte en gris foncé */
+}
+
+/* Static CSS file for menu styling */
+body {
+    background-color: #f4f7f6;
+    /* Couleur de fond claire */
+    font-family: 'Arial', sans-serif;
+    /* Police propre */
+}
+
+.container {
+    max-width: 900px;
+    /* Largeur maximale pour un contenu lisible */
+    margin-top: 30px;
+}
+
+h1.highlighted-heading {
+    color: #333;
+    /* Couleur du titre */
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.btn-block {
+    border-radius: 10px;
+    /* Bordures arrondies des boutons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre portée pour un effet de profondeur */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Effets de transition */
+}
+
+.btn-block:hover {
+    transform: translateY(-5px);
+    /* Légère élévation au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Ombre plus marquée au survol */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-block {
+    padding: 15px;
+    /* Espacement interne */
+    font-size: 16px;
+    /* Taille de police des boutons */
+    text-align: center;
+    /* Alignement du texte au centre */
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    /* Espacement entre les boutons */
+}
+
+body {
+    background-color: #f4f7f6;
+    /* Couleur de fond claire */
+    font-family: 'Arial', sans-serif;
+    /* Police propre */
+}
+
+.container {
+    max-width: 800px;
+    /* Largeur maximale pour un contenu lisible */
+    margin-top: 30px;
+}
+
+h1.highlighted-heading {
+    color: #333;
+    /* Couleur du titre */
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    /* Taille du titre */
+    text-align: center;
+    /* Centrer le texte */
+}
+
+.menu-item {
+    display: block;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    /* Légère élévation au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item .icon {
+    font-size: 2rem;
+    /* Taille des icônes */
+    color: #007bff;
+    /* Couleur des icônes */
+    margin-bottom: 10px;
+}
+
+.menu-item .text {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.highlighted-heading {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ecole-info {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.menu-item {
+    width: 200px;
+    margin: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar img {
+    object-fit: cover;
+}
+
+.dropdown-menu {
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.dropdown-item {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.dropdown-item i {
+    font-size: 1.1rem;
+}
+#top-navbar {
+    background-color: #f8f9fa; /* Light background for the navbar */
+    border-bottom: 1px solid #e0e0e0; /* Light border at the bottom */
+}
+
+.avatar {
+    border: 2px solid #007bff; /* Blue border around the avatar */
+}
+
+.dropdown-menu {
+    border-radius: 0.5rem; /* Rounded corners for the dropdown menu */
+}
+
+.dropdown-item {
+    padding: 0.75rem 1.5rem; /* Adequate padding for dropdown items */
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef; /* Light gray background on hover */
+}
+
+.btn-secondary {
+    border-radius: 0.5rem; /* Rounded corners for the button */
+}
+.avatar-container {
+    position: relative;
+}
+
+.avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Styles pour l'avatar dans le menu déroulant */
+.dropdown-menu {
+    min-width: 20rem;
+}
+
+.dropdown-avatar {
+    border: 2px solid #007bff; /* Bordure bleue autour de l'avatar */
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dropdown-avatar-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Styles pour le menu déroulant */
+.dropdown-menu .dropdown-item {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #e9ecef; /* Fond gris clair au survol */
+}
+
+/* Styles pour le bouton de déconnexion */
+.btn-secondary {
+    border-radius: 0.5rem; /* Coins arrondis pour le bouton */
+}

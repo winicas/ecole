@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h2 class="mb-3 fw-bold">Mon Profil</h2>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <!-- Vérifier si une image de profil est disponible, sinon afficher une image par défaut -->
+                <img src="{% if user.profile_picture and user.profile_picture.url %}{{ user.profile_picture.url }}{% else %}{% static 'avatar_profile_icon.png' %}{% endif %}" 
+                     alt="Photo de profil" 
+                     class="img-thumbnail rounded-circle" 
+                     width="150" 
+                     height="150">
+            </div>
+            <p><strong>Nom d'utilisateur:</strong> {{ user.username }}</p>
+            <p><strong>Prénom:</strong> {{ user.first_name }}</p>
+            <p><strong>Nom:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Éditer le profil</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

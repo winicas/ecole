@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter un Agent{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_styles.css' %}">
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-lg border-0">
+        <div class="card-header text-center bg-primary text-white rounded-top d-flex justify-content-between align-items-center">
+            <div class="d-flex">
+                <a href="{% url 'homess' %}" class="btn btn-light me-2">Accueil</a>
+                <a href="{% url 'agent_list' %}" class="btn btn-light">Liste des Agents</a>
+                <a href="{% url 'agent_paiements_list' %}" class="btn btn-light">Liste des Agents payés en avance</a> <!-- Nouveau bouton -->
+            </div>
+            <h2 class="highlighted-heading mb-0">Ajouter un Agent</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.nom_agent.id_for_label }}">Nom</label>
+                    {{ form.nom_agent }}
+                    {% if form.nom_agent.errors %}
+                        <div class="form-error">{{ form.nom_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.postnom_agent.id_for_label }}">Postnom</label>
+                    {{ form.postnom_agent }}
+                    {% if form.postnom_agent.errors %}
+                        <div class="form-error">{{ form.postnom_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.prenom_agent.id_for_label }}">Prénom</label>
+                    {{ form.prenom_agent }}
+                    {% if form.prenom_agent.errors %}
+                        <div class="form-error">{{ form.prenom_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.sexe_agent.id_for_label }}">Sexe</label>
+                    {{ form.sexe_agent }}
+                    {% if form.sexe_agent.errors %}
+                        <div class="form-error">{{ form.sexe_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.date_naissance_agent.id_for_label }}">Date de Naissance</label>
+                    {{ form.date_naissance_agent }}
+                    {% if form.date_naissance_agent.errors %}
+                        <div class="form-error">{{ form.date_naissance_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.fonction_agent.id_for_label }}">Fonction</label>
+                    {{ form.fonction_agent }}
+                    {% if form.fonction_agent.errors %}
+                        <div class="form-error">{{ form.fonction_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.adresse_agent.id_for_label }}">Adresse</label>
+                    {{ form.adresse_agent }}
+                    {% if form.adresse_agent.errors %}
+                        <div class="form-error">{{ form.adresse_agent.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.telephone_agent1.id_for_label }}">Téléphone 1</label>
+                    {{ form.telephone_agent1 }}
+                    {% if form.telephone_agent1.errors %}
+                        <div class="form-error">{{ form.telephone_agent1.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.telephone_agent2.id_for_label }}">Téléphone 2</label>
+                    {{ form.telephone_agent2 }}
+                    {% if form.telephone_agent2.errors %}
+                        <div class="form-error">{{ form.telephone_agent2.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.cours_dispenser.id_for_label }}">Cours Dispensé</label>
+                    {{ form.cours_dispenser }}
+                    {% if form.cours_dispenser.errors %}
+                        <div class="form-error">{{ form.cours_dispenser.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.salaire_total.id_for_label }}">Salaire Total</label>
+                    {{ form.salaire_total }}
+                    {% if form.salaire_total.errors %}
+                        <div class="form-error">{{ form.salaire_total.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/agent_form.js' %}"></script>
+{% endblock %}

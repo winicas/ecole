@@ -1,0 +1,130 @@
+{% load static %}
+<style>
+    .top-side {
+        background-size: cover;
+        background-position: top center;
+    }
+
+    .card {
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn {
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-success:hover {
+        background-color: #004d40;
+    }
+
+    .btn-info:hover {
+        background-color: #003f5c;
+    }
+
+    .btn-dark:hover {
+        background-color: #343a40;
+    }
+</style>
+
+<div id="side-nav">
+    <div class="main-menu">
+        <div class="top-side text-center py-4" style="background-image: url({% static 'img/dotted.jpg' %});">
+            <div class="desktop-hide">
+                <div class="toggle-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <a href="/">
+                <img src="{% static 'img/dottede.jpg' %}" width="160px" alt="Logo Django LMS">
+            </a>
+            <p class="text-orange">
+                <mark>
+                    <i class="far fa-hand-point-right"></i>
+                    {{ request.user.get_user_role }}
+                </mark>
+            </p>
+        </div>
+        
+        {% url 'admin_dashboard' as admin_dashboard_url %}
+        {% url 'create_ecole' as create_ecole_url %}
+        {% url 'create_directeur' as create_directeur_url %}
+        {% url 'ajouter_paiement' as ajouter_paiement_url %}
+        {% url 'create_admin' as create_admin_url %}
+        {% url 'create_comptable' as create_comptable_url %}
+        {% url 'home_rapport_et_analyse' as rapport_url %}
+        {% url 'historique_complet' as historique_complet_url %}
+        {% url 'impression_eleve_paye' as impression_url %}
+        {% url 'payment_success_view' as payment_success_url %}
+        {% url 'directeur_dashboard' as directeur_dashboard_url %}
+
+        <ul>
+            {% if request.user.is_superuser %}
+            <li class="{% if request.path == admin_dashboard_url %}active{% endif %}">
+                <a href="{{ admin_dashboard_url }}"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a>
+            </li>
+            <li class="{% if request.path == create_ecole_url %}active{% endif %}">
+                <a href="{{ create_ecole_url }}"><i class="fas fa-school"></i> Ajouter École</a>
+            </li>
+            <li class="{% if request.path == create_admin_url %}active{% endif %}">
+                <a href="{{ create_admin_url }}"><i class="fas fa-user-shield"></i> Administrateurs</a>
+            </li>
+            <li class="{% if request.path == create_directeur_url %}active{% endif %}">
+                <a href="{{ create_directeur_url }}"><i class="fas fa-user-tie"></i> Directeur</a>
+            </li>
+            <li class="{% if request.path == create_comptable_url %}active{% endif %}">
+                <a href="{{ create_comptable_url }}"><i class="fas fa-calculator"></i> Comptables</a>
+            </li>
+            <li class="{% if request.path == rapport_url %}active{% endif %}">
+                <a href="{{ rapport_url }}"><i class="fas fa-chart-line"></i> Rapport & Analyse</a>
+            </li>
+            <li class="{% if request.path == historique_complet_url %}active{% endif %}">
+                <a href="{{ historique_complet_url }}"><i class="fas fa-history"></i> Historique Complet</a>
+            </li>
+            <li class="{% if request.path == impression_url %}active{% endif %}">
+                <a href="{{ impression_url }}"><i class="fas fa-print"></i> Impression Paiements</a>
+            </li>
+            {% endif %}
+
+            {% if request.user.role == 'directeur' %}
+            <li class="{% if request.path == admin_dashboard_url %}active{% endif %}">
+                <a href="{{ directeur_dashboard_url }}"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a>
+            </li>
+            <li class="{% if request.path == rapport_url %}active{% endif %}">
+                <a href="{{ rapport_url }}"><i class="fas fa-chart-line"></i> Rapport & Analyse</a>
+            </li>
+            <li class="{% if request.path == historique_complet_url %}active{% endif %}">
+                <a href="{{ historique_complet_url }}"><i class="fas fa-history"></i> Historique Complet</a>
+            </li>
+            {% endif %}
+            directeur_dashboard
+            {% if request.user.role == 'comptable' %}
+            <li class="{% if request.path == payment_success_url %}active{% endif %}">
+                <a href="{{ payment_success_url }}"><i class="fas fa-check-circle"></i> Gestion de Paiement</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <footer class="card-footer mt-5 pt-3 pb-5 px-2">
+        <div class="col-12">
+            <p class="small m-0">
+                Read our <a href="#">Privacy</a> and <a href="#">Terms of use.</a>
+                <br />Gf_scool &copy; <script>document.write(new Date().getFullYear());</script>
+                <br />
+            </p>
+            <a href="#" class="btn btn-sm btn-dark mx-auto" target="_blank">
+                ⭐️ En cas de Problème, contactez 0817260996 de 16h à 18h
+            </a>
+        </div>
+    </footer>
+</div>

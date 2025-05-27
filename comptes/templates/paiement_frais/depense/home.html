@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Page d'Accueil{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <div class="menu-container">
+        <h1 class="highlighted-heading">Bienvenue sur la Gestion des Dépenses</h1>
+        <div class="menu-items">
+            <div class="menu-item">
+                <a href="{% url 'create_agent' %}">
+                    <div class="icon">&#128100;</div>
+                    <div class="text">Enregistrement Enseignant</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{% url 'agent_list' %}">
+                    <div class="icon">&#128179;</div>
+                    <div class="text">Salaire Enseignant</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{% url 'creer_achat' %}">
+                    <div class="icon">&#128176;</div>
+                    <div class="text">Achat Fournitures ou Autres Dépenses</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#">
+                    <div class="icon">&#128295;</div>
+                    <div class="text">Dépense Maintenance</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="#">
+                    <div class="icon">&#128196;</div>
+                    <div class="text">Catégories de Dépense</div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Rechercher la situation de paiement d'un élève</h1>
+  <form method="POST" action="{% url 'recherche_paiement' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Rechercher</button>
+</form>
+
+{% if resultats %}
+    <h2>Résultats de la recherche</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Élève</th>
+                <th>Classe</th>
+                <th>Option</th>
+                <th>Montant payé</th>
+                <th>Montant restant</th>
+                <th>Montant total à payer</th>
+                <th>Date de paiement</th>
+                <th>Motif du paiement</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultat in resultats %}
+            <tr>
+                <td>{{ resultat.eleve.nom_elev }} {{ resultat.eleve.prenom_elev }}</td>
+                <td>{{ resultat.eleve.classe_elev }}</td>
+                <td>{{ resultat.eleve.option_elev }}</td>
+                <td>
+                    {% for paiement in resultat.paiements %}
+                        {{ paiement.montant_total_payer }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for paiement in resultat.paiements %}
+                        {{ paiement.montant_restant }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for paiement in resultat.paiements %}
+                        {{ paiement.montant_total_a_payer }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for paiement in resultat.paiements %}
+                        {{ paiement.date }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for paiement in resultat.paiements %}
+                        {{ paiement.motif_paiement }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

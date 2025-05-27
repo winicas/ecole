@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier Agent{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Modifier l'Agent</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer les Modifications</button>
+        <a href="{% url 'agent_list' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}

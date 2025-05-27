@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Filtrer et Générer le PDF des Paiements{% endblock %}
+
+{% block content %}
+    <h1 class="highlighted-heading">Filtrer et Générer le PDF des Paiements</h1>
+    
+    <form method="get" action="{% url 'filtrer_paiements' %}" class="mb-4">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Filtrer et Générer PDF</button>
+    </form>
+
+    <div class="container">
+        <h2>Liste des Paiements</h2>
+        
+        <h3>Paiements Frais</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Élève</th>
+                    <th>Matricule</th>
+                    <th>Option</th>
+                    <th>Classe</th>
+                    <th>Montant Total Payé</th>
+                    <th>Montant Restant</th>
+                    <th>Montant Total à payé</th>
+                    <th>Motif de Paiement</th>
+                    <th>Date</th>
+                    
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for paiement in paiements %}
+                <tr>
+                    <td>{{ paiement.eleve.nom_elev }}</td>
+                    <td>{{ paiement.eleve.matricule_elev }}</td>
+                    <td>{{ paiement.eleve.option_elev }}</td>
+                    <td>{{ paiement.eleve.classe_elev }}</td>
+                    <td>{{ paiement.montant_total_payer }}</td>
+                    <td>{{ paiement.montant_restant }}</td>
+                    <td>{{ paiement.montant_total_a_payer }}</td>
+                    <td>{{ paiement.motif_paiement }}</td>
+                    <td>{{ paiement.date }}</td>
+                   
+                    
+                    
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucun paiement trouvé</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <h3>Paiements Autres Frais</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Élève</th>
+                    <th>Montant Payé</th>
+                    <th>Date</th>
+                    <th>Type de Frais</th>
+                    <th>Montant Total Payé</th>
+                    <th>Montant Restant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paiement_autre_frais in paiements_autres_frais %}
+                <tr>
+                    <td>{{ paiement_autre_frais.eleve.nom_elev }}</td>
+                    <td>{{ paiement_autre_frais.montant_payer_af }}</td>
+                    <td>{{ paiement_autre_frais.date_payement }}</td>
+                    <td>{{ paiement_autre_frais.type_de_frais }}</td>
+                    <td>{{ paiement_autre_frais.total_montant_payer_af }}</td>
+                    <td>{{ paiement_autre_frais.montant_restant_af }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">Aucun paiement trouvé</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

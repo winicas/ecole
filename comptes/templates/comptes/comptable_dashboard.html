@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard du Comptable{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Tableau de bord du Comptable</h1>
+
+    <div class="row">
+        <!-- École Info Card -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">École : {{ ecole.nom }}</h5>
+                    <p class="card-text">Adresse : {{ ecole.adresse }}</p>
+                    <p class="card-text">Contact : {{ ecole.contact }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paiements Card -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Paiements</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Montant</th>
+                                <th>Date</th>
+                                <th>Motif</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         
+                            <tr>
+                                <td colspan="4">Aucun paiement trouvé.</td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

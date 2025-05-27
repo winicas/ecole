@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Rapport Financier {% if report_type %}{{ report_type|title }}{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="highlighted-heading">Rapport Financier {{ report_type|title }}</h1>
+    <div class="table-responsive shadow p-4 mb-5 bg-light rounded">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><i class="fas fa-credit-card"></i> Paiements reçus</td>
+                    <td class="text-end">{{ report.paiements }} $</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-dollar-sign"></i> Salaires payés</td>
+                    <td class="text-end">{{ report.salaires }} $</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-shopping-cart"></i> Achats</td>
+                    <td class="text-end">{{ report.achats }} $</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-hand-holding-usd"></i> Autres Frais</td>
+                    <td class="text-end">{{ report.autres_frais }} $</td>
+                </tr>
+                <tr class="table-info">
+                    <td><strong><i class="fas fa-balance-scale"></i> Balance</strong></td>
+                    <td class="text-end"><strong>{{ report.balance }} $</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

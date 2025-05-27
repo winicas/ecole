@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des élèves insolvable pour l'année scolaire 2024 - 2025</title>
+    <style>
+        @page { size: landscape; } /* Mise en page en paysage */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .content {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Liste des élèves insolvable pour l'année scolaire 2024 - 2025</h2>
+        <p> Option : {{ option }}</p>
+        <p>Classe : {{ classe }}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Postnom</th>
+                    <th>Prénom</th>
+                    <th>Montant Payé</th>
+                    <th>Montant Total à Payer</th>
+                    <th>Montant Restant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in eleves_non_paye %}
+                <tr>
+                    <td>{{ item.eleve.matricule_elev }}</td>
+                    <td>{{ item.eleve.nom_elev }}</td>
+                    <td>{{ item.eleve.postnom_elev }}</td>
+                    <td>{{ item.eleve.prenom_elev }}</td>
+                    <td>{{ item.total_paye|floatformat:2 }} FC</td>
+                    <td>{{ item.montant_total_a_payer|floatformat:2 }} FC</td>
+                    <td>{{ item.montant_restant|floatformat:2 }} FC</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>Généré par Emmet Technology. &copy; 2024</p>
+    </div>
+</body>
+</html>

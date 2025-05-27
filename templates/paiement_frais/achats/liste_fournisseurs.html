@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Fournisseurs{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Liste des Fournisseurs</h1>
+    <div class="d-flex mb-3">
+        <a href="{% url 'creer_fournisseur' %}" class="btn btn-primary me-2">Créer un Fournisseur</a>
+        <a href="{% url 'creer_achat' %}" class="btn btn-secondary">Créer un Achat</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Contact</th>
+                <th>Adresse</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fournisseur in fournisseurs %}
+                <tr>
+                    <td>{{ fournisseur.nom }}</td>
+                    <td>{{ fournisseur.contact }}</td>
+                    <td>{{ fournisseur.adresse }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

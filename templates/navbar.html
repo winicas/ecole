@@ -1,0 +1,85 @@
+{% load static %}
+<div id="top-navbar" class="py-1">
+    <div class="container">
+        <div class="nav-wrapper d-flex justify-content-between align-items-center">
+            <!-- Sidebar Toggle Button -->
+            <div class="toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <!-- User Avatar and Name in the Navigation Bar -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown">
+                    <!-- Avatar in the Navigation Bar -->
+                    <div class="avatar border border-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% if request.user.profile_picture %}{{ request.user.profile_picture.url }}{% else %}{% static 'avatar_profile_icon.png' %}{% endif %}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 60px; height: 60px;">
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-end" style="min-width: 16rem;">
+                        <div class="d-flex flex-column align-items-center">
+                            <!-- Larger Avatar in Dropdown Menu -->
+                            <div class="avatar border mb-3">
+                                <img src="{% if request.user.profile_picture %}{{ request.user.profile_picture.url }}{% else %}{% static 'avatar_profile_icon.png' %}{% endif %}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                            </div>
+                            {% if request.user.is_authenticated %}
+                                <p class="fw-bold mb-1">
+                                    {{ request.user.first_name }} {{ request.user.last_name }}
+                                </p>
+                                <p class="small text-muted text-center mb-2">
+                                    Dernière connexion : {{ request.user.last_login|date:"d/m/Y H:i" }}
+                                </p>
+                            {% else %}
+                                <p class="fw-bold mb-1">
+                                    Utilisateur non connecté
+                                </p>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        
+                        <!-- Admin Links (Visible to Superusers) -->
+                        {% if request.user.is_superuser %}
+                        <a class="dropdown-item" href="{% url 'admin_dashboard' %}">
+                            <i class="fas fa-tachometer-alt me-2"></i> Tableau de Bord Admin
+                        </a>
+                        <a class="dropdown-item" href="{% url 'create_ecole' %}">
+                            <i class="fas fa-school me-2"></i> Ajouter une École
+                        </a>
+                        <a class="dropdown-item" href="{% url 'ajouter_paiement' %}">
+                            <i class="fas fa-credit-card me-2"></i> Ajouter un Paiement
+                        </a>
+                        <a class="dropdown-item" href="{% url 'create_admin' %}">
+                            <i class="fas fa-user-shield me-2"></i> Administrateurs
+                        </a>
+                        <a class="dropdown-item" href="{% url 'create_comptable' %}">
+                            <i class="fas fa-calculator me-2"></i> Comptables
+                        </a>
+                        {% endif %}
+
+                        <!-- Profile and Settings Links -->
+                        <a class="dropdown-item" href="{% url 'profile' %}">
+                            <i class="fas fa-user me-2"></i> Profil
+                        </a>
+                        <a class="dropdown-item" href="{% url 'edit_profile' %}">
+                            <i class="fas fa-cog me-2"></i> Paramètres
+                        </a>
+                        <hr>
+                        
+                        <!-- Logout Button -->
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-secondary" href="{% url 'logout' %}">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Display User Name in the Navigation Bar -->
+                <div class="ms-3 d-none d-md-block">
+                    {% if request.user.is_authenticated %}
+                        <span class="fw-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                    {% else %}
+                        <span class="fw-bold">Utilisateur non connecté</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

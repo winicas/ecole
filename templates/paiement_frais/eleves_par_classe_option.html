@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des Élèves par Classe et Option{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="highlighted-heading">Liste des Élèves par Classe et Option</h1>
+    
+    <!-- Formulaire de filtre -->
+    <form method="get" action="{% url 'imprimer_eleves_par_classe_option' %}">
+        <div class="form-row mb-3">
+            <!-- Sélecteur de type de frais -->
+            <div class="col-md-3">
+                <select name="type_frais" class="form-control">
+                    <option value="">Tous les types de frais</option>
+                    {% for type_frais in types_de_frais %}
+                        <option value="{{ type_frais.id }}" {% if type_frais_id == type_frais.id|stringformat:"s" %}selected{% endif %}>
+                            {{ type_frais.nom }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Sélecteur de classe -->
+            <div class="col-md-3">
+                <select name="classe" class="form-control">
+                    <option value="">Choisir une classe</option>
+                    {% for classe_option in classes %}
+                        <option value="{{ classe_option }}" {% if classe == classe_option %}selected{% endif %}>
+                            {{ classe_option }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Sélecteur d'option -->
+            <div class="col-md-3">
+                <select name="option" class="form-control">
+                    <option value="">Choisir une option</option>
+                    {% for option in options %}
+                        <option value="{{ option }}" {% if option == option %}selected{% endif %}>
+                            {{ option }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Boutons Filtrer et Imprimer -->
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Filtrer</button>
+               <!-- <button type="submit" name="print" value="1" class="btn btn-secondary ml-2">Imprimer</button> -->
+            </div>
+        </div>
+    </form>
+    
+    <!-- Tableau des paiements -->
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Matricule</th>
+                        <th>Nom complet</th>
+                        <th>Classe</th>
+                        <th>Option</th>
+                        <th>Type de Frais</th>
+                        <th>Montant Total Payé</th>
+                        <th>Montant Restant</th>
+                        <th>Montant total à Payé</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for paiement in paiements %}
+                    <tr>
+                        <td>{{ paiement.eleve.matricule_elev }}</td>
+                        <td>{{ paiement.eleve.nom_elev }} {{ paiement.eleve.postnom_elev }} {{ paiement.eleve.prenom_elev }}</td>
+                        <td>{{ paiement.eleve.classe_elev }}</td>
+                        <td>{{ paiement.eleve.option_elev }}</td>
+                        <td>{{ paiement.type_de_frais.nom }}</td>
+                        <td>{{ paiement.total_montant_payer_af }}</td>
+                        <td>{{ paiement.montant_restant_af }}</td>
+                        <td>{{ paiement.type_de_frais.montant_total_a_payer }}</td>
+                        
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">Aucun paiement trouvé</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
