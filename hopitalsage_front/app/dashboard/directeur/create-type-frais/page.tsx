@@ -3,7 +3,18 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import SidebarDirecteur from '@/components/SidebarDirecteur'
-import HeaderDirecteur from '@/components/HeaderDirecteur'
+import HeaderComptable from '@/components/HeaderComptable'
+interface Ecole {
+  id: number;
+  nom: string;
+  adresse: string;
+  telephone: string | null;
+}
+
+ 
+
+  const [ecole, setEcole] = useState<Ecole | null>(null);
+  const [user, setUser] = useState<any>(null);
 
 export default function CreateFraisPage() {
   const [formData, setFormData] = useState({
@@ -112,7 +123,7 @@ export default function CreateFraisPage() {
     <div className="flex h-screen bg-gray-100">
       <SidebarDirecteur />
       <div className="flex-1 flex flex-col">
-        <HeaderDirecteur />
+        <HeaderComptable ecole={ecole} user={user} />
         <main className="flex-1 overflow-y-auto p-6">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="bg-white rounded-2xl shadow p-6">
