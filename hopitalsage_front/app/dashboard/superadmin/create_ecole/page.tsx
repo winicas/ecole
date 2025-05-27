@@ -59,7 +59,7 @@ const AjouterÉcole = ({ ecoleInitiale }: { ecoleInitiale?: Ecole }) => {
       if (ecoleInitiale?.id) {
         // Mise à jour d'une école existante
         response = await axios.put(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/ecoles/${ecoleInitiale.id}/`,
+          `https://ecole-1-26o4.onrender.com/api/ecoles/${ecoleInitiale.id}/`,
           formData,
           {
             headers: {
@@ -70,7 +70,7 @@ const AjouterÉcole = ({ ecoleInitiale }: { ecoleInitiale?: Ecole }) => {
         );
       } else {
         // Création d'une nouvelle école
-        response = await axios.post('${process.env.NEXT_PUBLIC_API_URL}/api/ecoles/', formData, {
+        response = await axios.post('https://ecole-1-26o4.onrender.com/api/ecoles/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,

@@ -36,7 +36,7 @@ const AjouterDirecteur = () => {
       }
 
       try {
-        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin/', {
+        const response = await axios.get('https://ecole-1-26o4.onrender.com/api/dashboard/admin/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -98,7 +98,7 @@ const AjouterDirecteur = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/directeur/create/',
+        'https://ecole-1-26o4.onrender.com/api/directeur/create/',
         {
           username: directeur.username,
           email: directeur.email,

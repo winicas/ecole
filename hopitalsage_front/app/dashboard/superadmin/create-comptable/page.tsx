@@ -36,7 +36,7 @@ const AjouterComptable = () => {
       }
 
       try {
-        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin/', {
+        const response = await axios.get('https://ecole-1-26o4.onrender.com/api/dashboard/admin/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,7 +69,7 @@ const AjouterComptable = () => {
 
     try {
       const response = await axios.post(
-        '${process.env.NEXT_PUBLIC_API_URL}/api/comptable/create/',
+        'https://ecole-1-26o4.onrender.com/api/comptable/create/',
         {
           username: comptable.username,
           email: comptable.email,
