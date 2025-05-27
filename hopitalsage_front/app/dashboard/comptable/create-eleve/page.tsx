@@ -46,6 +46,7 @@ const CreateElevePage = () => {
   const [ecole, setEcole] = useState<Ecole | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchEcole = async () => {
@@ -124,9 +125,9 @@ const CreateElevePage = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950 font-sans">
-      <SidebarComptable userFullName="Comptable" />
+      <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={ecole ?? { id: 0, nom: 'Chargement...', adresse: '', telephone: '' }} />
+        <HeaderComptable ecole={ecole ?? { id: 0, nom: 'Chargement...', adresse: '', telephone: '' }} user={user}/>
         <Toaster richColors position="top-center" />
 
         {loading && <Progress value={progress} className="h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />}
