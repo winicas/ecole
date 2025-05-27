@@ -32,7 +32,8 @@ const PaiementAgent: React.FC = () => {
   const router = useRouter();
   const [agent, setAgent] = useState<Agent | null>(null);
   const [ecole, setEcole] = useState<Ecole | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     axios
@@ -151,7 +152,7 @@ const PaiementAgent: React.FC = () => {
       <SidebarComptable />
 
       <div className="flex flex-col flex-1">
-        <HeaderComptable />
+        
 
         <main className="p-6">
           <div className="bg-white shadow-md rounded-lg p-6 max-w-3xl mx-auto">
