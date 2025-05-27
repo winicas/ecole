@@ -118,7 +118,7 @@ export default function GeneratePDFPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/eleves-en-ordre', {
+        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/eleves-en-ordre', {
           params: { option, classe, quota },
         });
 

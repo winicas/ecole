@@ -30,7 +30,7 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
   useEffect(() => {
     const fetchEleveDetails = async () => {
       try {
-        const response = await axios.get(`/api/eleve/${searchParams.matricule}/`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/eleve/${searchParams.matricule}/`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` },
         });
         setEleve(response.data);

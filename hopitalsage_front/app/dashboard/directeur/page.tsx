@@ -42,7 +42,7 @@ const DirecteurDashboard = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:8000/api/dashboard/directeur/', {
+        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/directeur/', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(response.data);

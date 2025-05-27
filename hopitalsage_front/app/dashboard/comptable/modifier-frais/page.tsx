@@ -45,7 +45,7 @@ const ListePaiementsDeuxJours = () => {
       if (!token) return;
 
       try {
-        const response = await fetch('http://localhost:8000/api/paiements-hier-aujourdhui/', {
+        const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/paiements-hier-aujourdhui/', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -77,7 +77,7 @@ const ListePaiementsDeuxJours = () => {
   if (!confirm) return; // Annule si l'utilisateur clique sur "Annuler"
 
   try {
-    const response = await fetch(`http://localhost:8000/api/paiement/${id}/`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/paiement/${id}/`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

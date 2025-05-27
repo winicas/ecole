@@ -40,7 +40,7 @@ export default function FournisseurPage() {
   const fetchFournisseurs = async () => {
     const token = localStorage.getItem("accessToken")
     try {
-      const response = await axios.get('http://localhost:8000/api/fournisseurs/', {
+      const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/fournisseurs/', {
         headers: { Authorization: `Bearer ${token}` },
       })
       setFournisseurs(response.data)

@@ -37,7 +37,7 @@ const PaiementAgent: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/agents/${id}/`, {
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/agents/${id}/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
@@ -55,7 +55,7 @@ const PaiementAgent: React.FC = () => {
   useEffect(() => {
     if (agent?.ecole) {
       axios
-        .get(`http://localhost:8000/api/ecoles/${agent.ecole}/`, {
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/api/ecoles/${agent.ecole}/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
@@ -95,7 +95,7 @@ const PaiementAgent: React.FC = () => {
     try {
       const token = localStorage.getItem('accessToken');
       await axios.post(
-        'http://localhost:8000/api/paiements-salaire/',
+        '${process.env.NEXT_PUBLIC_API_URL}/api/paiements-salaire/',
         {
           agent: id,
           montant_paye: montant,

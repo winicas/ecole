@@ -35,7 +35,7 @@ export default function AjouterAgentPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       const token = localStorage.getItem('accessToken');
-      const res = await fetch('http://localhost:8000/api/utilisateurs-ecole/', { // Assure-toi de créer cette API
+      const res = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/utilisateurs-ecole/', { // Assure-toi de créer cette API
         headers: {
           'Authorization': `Bearer ${token}`,
         },

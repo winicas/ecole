@@ -39,10 +39,10 @@ export default function PaiementAutresFraisPage() {
       const token = localStorage.getItem("accessToken");
       try {
         const [eleveRes, fraisRes] = await Promise.all([
-          axios.get(`http://localhost:8000/api/eleves/${eleveId}/`, {
+          axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves/${eleveId}/`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:8000/api/autres-frais/", {
+          axios.get("${process.env.NEXT_PUBLIC_API_URL}/api/autres-frais/", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -132,7 +132,7 @@ export default function PaiementAutresFraisPage() {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.post(
-        "http://localhost:8000/api/paiement-autres-frais/",
+        "${process.env.NEXT_PUBLIC_API_URL}/api/paiement-autres-frais/",
         {
           eleve_id: eleve.id,
           type_frais_id: parseInt(typeFraisId),

@@ -54,19 +54,19 @@ export default function GenerateCartePage() {
     const token = localStorage.getItem('accessToken');
     if (!token) return;
 
-    axios.get('http://localhost:8000/api/eleves/all/', {
+    axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/eleves/all/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEleves(res.data);
       setFilteredEleves(res.data);
     }).catch(err => console.error('Erreur chargement élèves:', err));
 
-    axios.get('http://localhost:8000/api/dashboard/comptable/', {
+    axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/comptable/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEcole(res.data.ecole);
       if (res.data.ecole.logo) {
-        setLogoUrl(`http://localhost:8000${res.data.ecole.logo}`);
+        setLogoUrl(`${process.env.NEXT_PUBLIC_API_URL}${res.data.ecole.logo}`);
       }
     }).catch(err => console.error('Erreur chargement école:', err));
   }, []);
@@ -105,7 +105,7 @@ export default function GenerateCartePage() {
         reader.readAsDataURL(uploadedLogo);
       });
     } else if (ecole.logo) {
-      base64Logo = await convertImageToBase64(`http://localhost:8000${ecole.logo}`);
+      base64Logo = await convertImageToBase64(`${process.env.NEXT_PUBLIC_API_URL}${ecole.logo}`);
     }
 
     const blob = await pdf(

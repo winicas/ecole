@@ -23,7 +23,7 @@ const AjouterEnseignant: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000/api/enseignants/create/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/enseignants/create/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

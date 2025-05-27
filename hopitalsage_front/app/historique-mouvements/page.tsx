@@ -42,7 +42,7 @@ export default function HistoriqueMouvementsPage() {
       if (startDate) params.append('start_date', startDate);
       if (endDate) params.append('end_date', endDate);
 
-      const res = await fetch(`http://localhost:8000/api/historique-mouvements/?${params.toString()}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/historique-mouvements/?${params.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

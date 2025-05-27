@@ -22,7 +22,7 @@ const RapportJournalierPage = () => {
 
   setLoading(true);
   try {
-    const url = `http://localhost:8000/api/rapport-journalier/?date=${selectedDate}${force ? '&force=true' : ''}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/rapport-journalier/?date=${selectedDate}${force ? '&force=true' : ''}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`,

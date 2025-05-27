@@ -50,7 +50,7 @@ const AdminDashboard = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:8000/api/dashboard/admin/', {
+        const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

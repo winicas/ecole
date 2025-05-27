@@ -10,7 +10,7 @@ export default function CreateAnneeScolaireForm() {
 
     const token = localStorage.getItem("accessToken");
 
-    const res = await fetch("http://localhost:8000/api/annees-scolaires/create/", {
+    const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/api/annees-scolaires/create/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

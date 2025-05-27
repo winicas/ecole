@@ -29,7 +29,7 @@ const ListeAgents: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/api/agents/', {
+      .get('${process.env.NEXT_PUBLIC_API_URL}/api/agents/', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

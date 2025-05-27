@@ -53,7 +53,7 @@ const CreateElevePage = () => {
       const token = localStorage.getItem('accessToken');
       if (!token) return;
       try {
-        const response = await axios.get('http://localhost:8000/api/dashboard/comptable/', {
+        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/comptable/', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEcole(response.data.ecole);

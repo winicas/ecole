@@ -31,7 +31,7 @@ export default function CreatePaiementPage() {
     const fetchEleve = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axios.get(`http://localhost:8000/api/eleves/${eleveId}/`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves/${eleveId}/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEleve(response.data);
@@ -66,7 +66,7 @@ export default function CreatePaiementPage() {
 
     try {
       const token = localStorage.getItem("accessToken");
-      await axios.post("http://localhost:8000/api/paiements/", {
+      await axios.post("${process.env.NEXT_PUBLIC_API_URL}/api/paiements/", {
         eleve_id: eleve.id,
         montant_payer: montant,
         motif_paiement: motifPaiement,

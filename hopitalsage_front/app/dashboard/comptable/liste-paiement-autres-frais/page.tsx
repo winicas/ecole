@@ -50,7 +50,7 @@ export default function ListePaiementAutresFraisPage() {
 
   useEffect(() => {
     // Remplacez l'URL par celle de votre API pour récupérer les types de frais
-    axios.get("http://localhost:8000/api/type-frais-list/")
+    axios.get("${process.env.NEXT_PUBLIC_API_URL}/api/type-frais-list/")
       .then(response => {
         setTypeFraisList(response.data);
       })

@@ -36,7 +36,7 @@ const AjouterComptable = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:8000/api/dashboard/admin/', {
+        const response = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin/', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,7 +69,7 @@ const AjouterComptable = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/comptable/create/',
+        '${process.env.NEXT_PUBLIC_API_URL}/api/comptable/create/',
         {
           username: comptable.username,
           email: comptable.email,

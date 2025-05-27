@@ -29,7 +29,7 @@ export default function AutresFraisPage() {
   const fetchAutresFrais = async () => {
     try {
       const token = localStorage.getItem('accessToken')
-      const res = await axios.get('http://localhost:8000/api/autres-frais/', {
+      const res = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/autres-frais/', {
         headers: { Authorization: `Bearer ${token}` },
       })
       setAutresFrais(res.data)
@@ -50,8 +50,8 @@ export default function AutresFraisPage() {
     try {
       const token = localStorage.getItem('accessToken')
       const url = editingId
-        ? `http://localhost:8000/api/autres-frais/${editingId}/`
-        : 'http://localhost:8000/api/autres-frais/'
+        ? `${process.env.NEXT_PUBLIC_API_URL}/autres-frais/${editingId}/`
+        : '${process.env.NEXT_PUBLIC_API_URL}/api/autres-frais/'
       const method = editingId ? 'put' : 'post'
 
       await axios[method](url, formData, {

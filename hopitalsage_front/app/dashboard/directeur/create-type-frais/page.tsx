@@ -57,7 +57,7 @@ export default function CreateFraisPage() {
 
   const fetchFraisList = async () => {
     const token = localStorage.getItem('accessToken')
-    const res = await axios.get('http://localhost:8000/api/type-frais-scolaire/', {
+    const res = await axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/type-frais-scolaire/', {
       headers: { Authorization: `Bearer ${token}` },
     })
     setFraisList(res.data)
@@ -91,7 +91,7 @@ export default function CreateFraisPage() {
       if (!token) throw new Error('Token manquant')
 
       if (editingId) {
-        await axios.put(`http://localhost:8000/api/type-frais-scolaire/${editingId}/`, formData, {
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/type-frais-scolaire/${editingId}/`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export default function CreateFraisPage() {
         })
         setSuccessMessage('✅ Frais scolaire modifié avec succès !')
       } else {
-        await axios.post('http://localhost:8000/api/type-frais-scolaire/', formData, {
+        await axios.post('${process.env.NEXT_PUBLIC_API_URL}/api/type-frais-scolaire/', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
