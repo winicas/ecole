@@ -136,7 +136,7 @@ const HeaderComptable = ({ ecole, user }: HeaderComptableProps) => {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="overflow-hidden"
+      
         >
           {submenu.map((item, index) => (
             <Link href={item.href} key={index} onClick={() => { setOpenMenu(null); setOpenSubmenu(null); }}>
@@ -157,7 +157,6 @@ const HeaderComptable = ({ ecole, user }: HeaderComptableProps) => {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -10, scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="absolute left-0 mt-2 w-72 bg-white dark:bg-zinc-800 rounded-xl shadow-xl z-50 overflow-hidden"
       ref={menuRefs[refKey]}
     >
       {items.map((item, index) => (
@@ -200,7 +199,6 @@ const HeaderComptable = ({ ecole, user }: HeaderComptableProps) => {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="flex justify-between items-center px-8 py-5 m-4 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-zinc-800 dark:via-zinc-700 dark:to-zinc-600 shadow-2xl backdrop-blur-md relative"
     >
       <div className="flex items-center gap-4 relative">
         {/* Menu Principal */}

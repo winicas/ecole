@@ -61,8 +61,6 @@ useEffect(() => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={handleGoHome}
-          className="bg-white/30 text-white font-semibold py-2 px-4 rounded-xl shadow-md mb-4 hover:bg-white/40 transition"
         >
           🏠 Accueil
         </motion.button>
@@ -71,7 +69,6 @@ useEffect(() => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white/20 text-white p-4 rounded-2xl text-center text-sm shadow-md mb-6 backdrop-blur-md"
         >
           <p className="font-semibold mb-2">📢 Message du SuperAdmin :</p>
           <p>Bienvenue chez <strong>Nicatech</strong> 🚀</p>
