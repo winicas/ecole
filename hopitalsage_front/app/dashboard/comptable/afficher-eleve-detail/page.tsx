@@ -25,6 +25,7 @@ interface Props {
 export default function AfficheEleveDetailPage({ searchParams }: Props) {
   const [eleve, setEleve] = useState<Eleve | null>(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchEleveDetails = async () => {
@@ -57,7 +58,7 @@ export default function AfficheEleveDetailPage({ searchParams }: Props) {
     <div className="flex min-h-screen bg-gray-100 dark:bg-zinc-950 font-sans">
       <SidebarComptable />
       <div className="flex flex-col flex-1">
-        <HeaderComptable ecole={{ id: 0, nom: "Nom École", adresse: "", telephone: "" }} />
+        <HeaderComptable ecole={{ id: 0, nom: "Nom École", adresse: "", telephone: "" }} user={user} />
         <Toaster richColors position="top-center" />
 
         <main className="flex items-center justify-center flex-1 p-8 m-4 bg-white dark:bg-zinc-800 rounded-3xl shadow-2xl overflow-y-auto">
