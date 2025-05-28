@@ -194,7 +194,7 @@ const CartePdf: React.FC<Props> = ({ eleve, ecole, photoUrl, qrCodeUrl }) => (
   <Document>
     {/* Page 1 : Recto */}
     <Page size={[340, 210]} style={styles.page}>
-      
+       <Image src="/rdc.png" style={styles.logoRdc} />
       {ecole.logo && <Image src={ecole.logo} style={styles.logoBackground} />}
       <Text style={styles.header}>RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</Text>
       <Text style={styles.ministry}>
@@ -251,7 +251,6 @@ const CartePdf: React.FC<Props> = ({ eleve, ecole, photoUrl, qrCodeUrl }) => (
 
     {/* Page 2 : Verso */}
     <Page size={[340, 210]} style={styles.page}>
-      <Image src="/rdc.png" style={styles.logoRdc} />
       {ecole.logo && <Image src={ecole.logo} style={styles.logoBackgroundVerso} />}
       <Text style={styles.versoHeader}>RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</Text>
       <Text style={styles.versoMinistry}>
