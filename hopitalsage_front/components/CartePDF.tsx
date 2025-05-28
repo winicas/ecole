@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
 },
 logoRdc: {
   position: 'absolute',
-  top: 8,
+  top: 5,
   left: 20,
   width: 40,
   height: 40,
