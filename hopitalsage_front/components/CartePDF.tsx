@@ -178,6 +178,14 @@ const styles = StyleSheet.create({
   opacity: 0.7, // <-- Ici tu mets 70% de visibilité
   zIndex: -1,
 },
+logoRdc: {
+  position: 'absolute',
+  top: 20,
+  left: 20,
+  width: 40,
+  height: 40,
+},
+
 });
 import { PDFViewer } from '@react-pdf/renderer';
 
@@ -186,6 +194,7 @@ const CartePdf: React.FC<Props> = ({ eleve, ecole, photoUrl, qrCodeUrl }) => (
   <Document>
     {/* Page 1 : Recto */}
     <Page size={[340, 210]} style={styles.page}>
+      <Image src="/rdc.webp" style={styles.logoRdc} />
       {ecole.logo && <Image src={ecole.logo} style={styles.logoBackground} />}
       <Text style={styles.header}>RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</Text>
       <Text style={styles.ministry}>
