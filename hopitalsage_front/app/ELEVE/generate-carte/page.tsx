@@ -54,14 +54,14 @@ export default function GenerateCartePage() {
     const token = localStorage.getItem('accessToken');
     if (!token) return;
 
-    axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/eleves/all/', {
+    axios.get('https://ecole-1-26o4.onrender.com/api/eleves/all/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEleves(res.data);
       setFilteredEleves(res.data);
     }).catch(err => console.error('Erreur chargement élèves:', err));
 
-    axios.get('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/comptable/', {
+    axios.get('https://ecole-1-26o4.onrender.com/api/dashboard/comptable/', {
       headers: { Authorization: `Bearer ${token}` },
     }).then(res => {
       setEcole(res.data.ecole);

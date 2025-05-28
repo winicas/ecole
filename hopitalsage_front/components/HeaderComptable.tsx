@@ -56,7 +56,7 @@ const HeaderComptable = ({ ecole, user }: HeaderComptableProps) => {
 
   try {
     // Appel API logout (vers Django)
-    await axios.post("${process.env.NEXT_PUBLIC_API_URL}/api/logout/", {
+    await axios.post("https://ecole-1-26o4.onrender.com/api/logout/", {
       refresh: refreshToken,
     });
   } catch (error) {
