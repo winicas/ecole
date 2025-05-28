@@ -242,7 +242,7 @@ const CartePdf: React.FC<Props> = ({ eleve, ecole, photoUrl, qrCodeUrl }) => (
 
     {/* Page 2 : Verso */}
     <Page size={[340, 210]} style={styles.page}>
-      {ecole.logo && <Image src={ecole.logo} style={styles.logoBackground} />}
+      {ecole.logo && <Image src={ecole.logo} style={styles.logoBackgroundVerso} />}
       <Text style={styles.versoHeader}>RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</Text>
       <Text style={styles.versoMinistry}>
         MINISTÈRE DE L’ENSEIGNEMENT PRIMAIRE, SECONDAIRE ET TECHNIQUE
