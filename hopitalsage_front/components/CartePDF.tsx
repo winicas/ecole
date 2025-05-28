@@ -169,6 +169,15 @@ const styles = StyleSheet.create({
     textTransform: 'lowercase',
     color: '#334155',
   },
+  logoBackgroundVerso: {
+  position: 'absolute',
+  top: 30,
+  left: 90,
+  width: 160,
+  height: 160,
+  opacity: 0.7, // <-- Ici tu mets 70% de visibilité
+  zIndex: -1,
+},
 });
 import { PDFViewer } from '@react-pdf/renderer';
 
