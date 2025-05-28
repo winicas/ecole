@@ -44,7 +44,7 @@ export default function ComptableDashboard() {
       const token = localStorage.getItem("accessToken");
       if (!token) return;
       try {
-        const response = await axios.get("${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/comptable/", {
+        const response = await axios.get("https://ecole-1-26o4.onrender.com/api/dashboard/comptable/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEcole(response.data.ecole);
@@ -60,7 +60,7 @@ export default function ComptableDashboard() {
       const token = localStorage.getItem("accessToken");
       if (!token) return;
       try {
-        const response = await axios.get("${process.env.NEXT_PUBLIC_API_URL}/api/me/", {
+        const response = await axios.get("https://ecole-1-26o4.onrender.com/api/me/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log("USER RESPONSE:", response.data); 

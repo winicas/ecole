@@ -25,7 +25,7 @@ export default function EditElevePage() {
     const fetchEleve = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves/${eleveId}/`, {
+        const response = await axios.get(`https://ecole-1-26o4.onrender.com/api/eleves/${eleveId}/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEleve(response.data);
@@ -47,7 +47,7 @@ export default function EditElevePage() {
 
     try {
       const token = localStorage.getItem("accessToken");
-      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves/${eleve.id}/identite/`, {
+      await axios.patch(`https://ecole-1-26o4.onrender.com/api/eleves/${eleve.id}/identite/`, {
         nom_elev: eleve.nom_elev,
         postnom_elev: eleve.postnom_elev,
         prenom_elev: eleve.prenom_elev,

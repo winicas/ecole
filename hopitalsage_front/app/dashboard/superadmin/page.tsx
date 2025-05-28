@@ -50,7 +50,7 @@ const AdminDashboard = () => {
       }
 
       try {
-        const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin/', {
+        const response = await fetch('https://ecole-1-26o4.onrender.com/api/dashboard/admin/', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

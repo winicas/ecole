@@ -15,7 +15,7 @@ export default function MonProfilPage() {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("accessToken");
-      const res = await axios.get("${process.env.NEXT_PUBLIC_API_URL}/api/me/", {
+      const res = await axios.get("https://ecole-1-26o4.onrender.com/api/me/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(res.data);
@@ -40,7 +40,7 @@ export default function MonProfilPage() {
       form.append("profile_picture", formData.profile_picture);
     }
 
-    await axios.put("${process.env.NEXT_PUBLIC_API_URL}/api/me/update/", form, {
+    await axios.put("https://ecole-1-26o4.onrender.com/api/me/update/", form, {
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
     });
 

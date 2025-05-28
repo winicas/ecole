@@ -22,7 +22,7 @@ export default function Page() {
       try {
         const accessToken = localStorage.getItem("accessToken");
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/eleves/${eleveid}/`, {
+        const res = await fetch(`https://ecole-1-26o4.onrender.com/api/eleves/${eleveid}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
